@@ -1,0 +1,180 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# das ganze braucht noch n sinnvollen titel !!! Todo
+
+## Einleitung 
+
+Pokémon ist ein Spiel der japanischen Spieleentwickler Firma Game Freak 
+m spiel geht es darum Wesen namens Pokémon zu fangen und zu sammeln.
+Mit den gesammelten Wesen kann man dann gegen andere Spieler und wilde Pokémon kämpfen.
+
+In dieser Datenanalyse geht es darum herauszufinden ob historisch über die Spiel versionen 
+ein sogenannter "Power Shift" stattgefunden hat also der Entwickler über die Jahre mehr stärkere Pokémon dem Spiel hinzugefügt hat.
+
+Zur Analyse dient ein Datensatz über alle Pokémons aus allen verschiedenen Speielen über die Jahre.
+
+## Laden und bereinigen der Daten
+
+Zuerst werden abhängigkeiten geladen.
+```{r}
+library(readr)
+library(ggplot2)
+library(magrittr)
+library(dplyr)
+```
+
+Die Datenbank liegt im CSV-Format vor und kann als solche direkt geladen werden.
+Sie umdasst 1235 Zeilen und 45 Spalten.
+```{r}
+pokemon_data <- read_csv("~/repos/r_project_dhbw/data/pkm_database.csv")
+```
+
+Alle Kategorischen Daten werden von "" eingeleitet 
+da dies zur weiterverarbeitung ungünstig ist werden zuerst alle "" entfernt.
+```{r}
+pokemon_data <- pokemon_data %>%
+  mutate_if(is.character, gsub, pattern = "\\\"", replacement = "")
+```
+
+Die Spaltennamen enthalten Leerzeichen dies ist zum nutzen des Datensatzes in R
+ungünstig weshalb die Leerzeichen mit Punkten ersetzt werden.
+```{r}
+names(pokemon_data) <- make.names(names(pokemon_data))
+```
+
+Die Spalten die nicht für die Analyse nötig sind werden entfernt.
+```{r}
+pokemon_filtered <- select(pokemon_data,  -contains("EV"), -contains("Egg"), -contains("Experience"), -contains("Ability"), -contains("Ratio"), -contains("Happiness"), -contains("Height"), -contains("Weight"), -contains("Classification"), -contains("Rate"))
+```
+
+Manche Pokemons haben alternativeformen einige davon sind aktuell nicht spielbar wie Megas oder Gigantamax(Generational Gimmicks)
+Manche haben formen die zu sehr ähnlich zu ihrer form deswegen werden diese formen raus gefiltert
+!!! was ? nochmal fumuliern vllt?
+```{r}
+pokemon_filtered <- filter(pokemon_filtered, !Alternate.Form.Name %in% c("Mega", "Mega X", "Mega Y", "Gigantamax", "Female", "Fan", "Galar Zen", "Low Key Gigantamax", 
+                                                                                              "Lowkey", "Snowy", "Starter", "Zen", "Heat", "Wash", "Rainy", "Eternamax"))
+```
+
+wir wollen die generationen betrachten 
+die pokemons besitzen eigenschaft game of origin diese wird auf -
+!!! was ? nochmal fumuliern vllt?
+```{r}
+origin_mapping <- c("Red" = 1, "Gold" = 2, "Emerald" = 3, "Ruby" = 3, "Diamond" = 4, "Black" = 5, "Black 2" = 5, "X" = 6, "Sun" = 7, "Ultra Sun" = 7, "Pokemon GO" = 8, "Sword" = 8, "Scarlet" = 9, "Legends: Arceus" = 9)
+pokemon_filtered <- mutate(pokemon_filtered, Generation = origin_mapping[match(pokemon_filtered$"Game.s..of.Origin", names(origin_mapping))])
+```
+Zuletzt werden für die Jeweiligen Generationen Farben zur visualisierung gesetztz.
+```{r}
+generation_colours <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#999999")
+```
+
+Nun können wir uns eine Übersicht über den aufgeräumten Datensatz verschaffen.
+```{r}
+glimpse(pokemon_filtered)
+```
+
+## Analyse
+
+Aufällig: verdichtet zwischen 450-550
+Viele bei 600 Pseudo Legendary, das erjkläre glaub einfach ich :)
+kannst einfach als sagen wie geplotet und koloriert wird
+```{r}
+ggplot(pokemon_filtered, aes(x = Pokedex.Number, y = Base.Stat.Total, color = Base.Stat.Total)) + 
+  geom_point() +
+  labs(title = "Pokemon Base Stat Totals", y = "Base Stat Total") +
+  scale_y_continuous(limits = c(100, max(pokemon_filtered$Base.Stat.Total))) +
+  scale_color_gradient(low = "darkblue", high = "red")
+```
+
+
+
+Legenddäre Pokémon sind besonders stark deswegen wird angeschaut wie diese auf die 
+unterschiedlichen Generationen verteilt sind.
+Es fällt auf das ??? !!! TODO ? funzt iwi nich ?? 
+```{r}
+legendary_counts <- pokemon_filtered %>%
+  group_by(Generation, Legendary.Type) %>%
+  summarize(count = n())
+```
+
+# Create a stacked bar chart showing the share of each Legendary.Type in each Generation
+
+Im folgenden Diagram wird die Verteilung der Legendären Pokemon auf die jeweiligen Spiel Generationen visualisiert.
+```{r}
+ggplot(legendary_counts, aes(x = Generation, y = count, fill = Legendary.Type)) +
+  geom_col() +
+  scale_color_manual(values = generation_colours)
+```
+
+Zusätzlich schauen wir uns die Lebes werte der Pokémon an 
+!!! erkenntnisse
+```{r}
+ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Health.Stat, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)
+```
+
+Analyse der Angriffsstärken über die Generationen.
+!!! erkenntnisse
+```{r}
+ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Attack.Stat, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)
+```
+Analyse der Verteidigunswerte über die Generationen.
+!!! erkenntnisse
+```{r}
+ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Defense.Stat, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)
+```
+
+Analyse der Spezialattacken-Stärken über die Generationen.
+!!! erkenntnisse
+```{r}
+ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Special.Attack.Stat, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)
+```
+
+Analyse der Spezialverteidigungen über die Generationen.
+!!! erkenntnisse
+```{r}
+ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Special.Defense.Stat, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)
+```
+
+kp was basestat is  !!! todo
+```{r}
+ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Base.Stat.Total, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)
+```
+
+
+```{r}
+pokemon_leg_filtered <- filter(pokemon_filtered, !Legendary.Type %in% c("Legendary", "Mythical","Sub-Legendary"))
+ggplot(data = pokemon_leg_filtered, aes(x = factor(Generation), y = Base.Stat.Total, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)
+```
+Im folgenden Chart ist zu sehen, dass die Pokémon über die Generationen stärker wurden.
+```{r}
+ggplot(data = pokemon_leg_filtered, aes(x = factor(Generation), y = Base.Stat.Total, fill = factor(Generation))) +
+  stat_summary(fun.y = "median", geom = "bar") +
+  scale_fill_manual(values = generation_colours)
+```
+
+## Fazit
+
+Ergebnis der Analyse ist, dass die Pokémon tatsächlich über die Generationen 
+Stärker geworden sind.
+
+Das ist Interessant weil? ?? !! TODO
+
+
+
+
