@@ -3,22 +3,23 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-# das ganze braucht noch n sinnvollen titel !!! Todo
+# Analyse eines historischen Poké(rrr)mon Datensatzes
+von Larrrs Brroche und Peterrr Scheu (das mit den r's lassen wir so)
 
 ## Einleitung 
 
 Pokémon ist ein Spiel der japanischen Spieleentwickler Firma Game Freak 
-m spiel geht es darum Wesen namens Pokémon zu fangen und zu sammeln.
+im Spiel geht es darum, Wesen namens Pokémon zu fangen und zu sammeln.
 Mit den gesammelten Wesen kann man dann gegen andere Spieler und wilde Pokémon kämpfen.
 
-In dieser Datenanalyse geht es darum herauszufinden ob historisch über die Spiel versionen 
-ein sogenannter "Power Shift" stattgefunden hat also der Entwickler über die Jahre mehr stärkere Pokémon dem Spiel hinzugefügt hat.
+In dieser Datenanalyse geht es darum, herauszufinden ob historisch über die Spiel-Versionen 
+ein sogenannter "Power Shift" stattgefunden hat, also der Entwickler über die Jahre mehr stärkere Pokémon dem Spiel hinzugefügt hat.
 
-Zur Analyse dient ein Datensatz über alle Pokémons aus allen verschiedenen Speielen über die Jahre.
+Zur Analyse dient ein Datensatz über alle Pokémons aus allen verschiedenen Spielen über die Jahre.
 
 ## Laden und bereinigen der Daten
 
-Zuerst werden abhängigkeiten geladen.
+Zuerst werden Abhängigkeiten geladen.
 ```{r}
 library(readr)
 library(ggplot2)
@@ -27,7 +28,7 @@ library(dplyr)
 ```
 
 Die Datenbank liegt im CSV-Format vor und kann als solche direkt geladen werden.
-Sie umdasst 1235 Zeilen und 45 Spalten.
+Sie umfasst 1235 Zeilen und 45 Spalten.
 ```{r}
 pokemon_data <- read_csv("~/repos/r_project_dhbw/data/pkm_database.csv")
 ```
