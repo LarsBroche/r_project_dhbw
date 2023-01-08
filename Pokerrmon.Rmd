@@ -4,20 +4,20 @@ output: html_notebook
 ---
 
 # Analyse eines historischen Poké(rrr)mon Datensatzes
-von Larrrs Brroche und Peterrr Scheu (das mit den r's lassen wir so)
+von Larrrs Brrroche und Peterrr Scheu (das mit den r's lassen wir so)
 
 ## Einleitung 
 
-Pokémon ist ein Spiel der japanischen Spieleentwickler Firma Game Freak 
+Pokémon ist ein Spiel der japanischen Spieleentwickler Firma "Game Freak" 
 im Spiel geht es darum, Wesen namens Pokémon zu fangen und zu sammeln.
 Mit den gesammelten Wesen kann man dann gegen andere Spieler und wilde Pokémon kämpfen.
 
-Es gibt mittlerweile über tausend Pokemons, die alle unterschiedlich stark sind. Ob ein Pokemon stark ist
-lässt sich an mehreren Faktoren erkennen. Einer dieser Faktoren sind die sogenannten Basiswerte. Pokemons besitzen 6 Basis Werte:: Angriff/Spezial Angriff sagen wie stark die (spezial-) Attacken der Pokemons sind, Verteidigung/Spezial Verteidgung kombiniert mit den Lebens Punkten sagen aus, wie gut ein Pokemon (spezial-) einstecken kann, die Geschwindikeit sagt aus, wie schnell ein Pokemon angreift (das Spiel Pokemon ist Runden basiert, schnelle Pokemons greifen früher in der Runde an als langsamere).
+Es gibt mittlerweile über tausend Pokémons, die alle unterschiedlich stark sind. Ob ein Pokémon stark ist
+lässt sich an mehreren Faktoren erkennen. Einer dieser Faktoren sind die sogenannten Basiswerte. Pokémons besitzen 6 Basis Werte: Angriff/Spezial Angriff sagen wie stark die (Spezial-) Attacken der Pokémons sind, Verteidigung/Spezial Verteidgung kombiniert mit den Lebenspunkten sagen aus, wie gut ein Pokémon (spezial-) einstecken kann, die Geschwindigkeit sagt aus, wie schnell ein Pokémon angreift. Das Spiel Pokémon ist Runden basiert, schnelle Pokémons greifen früher in der Runde an als langsamere.
 
-Ende 2022 wurde die neunte Pokemongeneration veröffentlicht und viele Spieler sagen es hätte ein "Powercreep" stattgefunden. Das bedeutet, dass die Spieler die neuen Pokemons stärker finden als die der alten Generationen. Der Vorwurf des "Powercreeps" ist nicht neu und findet seit einigen Pokemon Generationen mit jeder neuen Generation statt.
+Ende 2022 wurde die neunte Pokémongeneration veröffentlicht und viele Spieler sagen, es hätte ein "Powercreep" stattgefunden. Das bedeutet, dass die Spieler die neuen Pokémons stärker finden als die der alten Generationen. Der Vorwurf des Powercreeps ist nicht neu und findet seit einigen Pokémongenerationen mit jeder neuen Generation statt.
 
-In dieser Datenanalyse geht es darum, herauszufinden ob der Vorwurf des Powercreeps anhand der Basiswerte nachzuvollziehen ist oder ob andere Faktoren wie Attacken und Fähigkeiten hierfür ausschlaggebend sind.
+In dieser Datenanalyse geht es darum herauszufinden, ob der Vorwurf des Powercreeps anhand der Basiswerte nachzuvollziehen ist, oder ob andere Faktoren wie Attacken und Fähigkeiten hierfür ausschlaggebend sind.
 
 Zur Analyse dient ein Datensatz über alle Pokémons aus allen verschiedenen Spielen über die Jahre.
 
@@ -34,87 +34,84 @@ library(dplyr)
 Die Datenbank liegt im CSV-Format vor und kann als solche direkt geladen werden.
 Sie umfasst 1235 Zeilen und 45 Spalten.
 ```{r}
-pokemon_data <- read_csv("DHBW_lab/Rrrrr/r_project_dhbw/data/pkm_database.csv")
+Pokémon_data <- read_csv("~/repos/r_project_dhbw/data/pkm_database.csv")
 ```
 
-Alle Kategorischen Daten werden von "" eingeleitet,
-da dies zur Weiterverarbeitung ungünstig ist werden zuerst alle "" entfernt.
+Alle kategorischen Daten werden von "" eingeleitet,
+da dies zur Weiterverarbeitung ungünstig ist, werden zuerst alle "" entfernt.
 ```{r}
-pokemon_data <- pokemon_data %>%
+Pokémon_data <- Pokémon_data %>%
   mutate_if(is.character, gsub, pattern = "\\\"", replacement = "")
 ```
 
-Die Spaltennamen enthalten Leerzeichen dies ist bei der Verwendung des Datensatzes in R
+Die Spaltennamen enthalten Leerzeichen. Dies ist bei der Verwendung des Datensatzes in R
 ungünstig, weshalb die Leerzeichen mit Punkten ersetzt werden.
 ```{r}
-names(pokemon_data) <- make.names(names(pokemon_data))
+names(Pokémon_data) <- make.names(names(Pokémon_data))
 ```
 
-Die Spalten die nicht für die Analyse nötig sind werden entfernt. Das macht die Daten beim Debugging übersichtlicher.
+Die Spalten, die nicht für die Analyse nötig sind werden entfernt. Das macht die Daten beim Debugging übersichtlicher.
 ```{r}
-pokemon_filtered <- select(pokemon_data,  -contains("EV"), -contains("Egg"), -contains("Experience"), -contains("Ability"), -contains("Ratio"), -contains("Happiness"), -contains("Height"), -contains("Weight"), -contains("Classification"), -contains("Rate"))
+Pokémon_filtered <- select(Pokémon_data,  -contains("EV"), -contains("Egg"), -contains("Experience"), -contains("Ability"), -contains("Ratio"), -contains("Happiness"), -contains("Height"), -contains("Weight"), -contains("Classification"), -contains("Rate"))
 ```
 
-Manche Pokemons haben alternative Formen einige davon sind aktuell nicht spielbar, wie Megas oder Gigantamax. Diese Formen sind Teil von besonderen Spielmechaniken, die nur in bestimmten Generationen verfügbar waren.
-Manche Formen sind nicht spielbar oder andere sind quasi identisch mit der standard Form. Diese Formen werden aus dem Datensatz entfernt. Die anderen Formen werden in der Analyse als eigenes Pokemon betrachtet und bleiben im Datensatz bestehen.
+Manche Pokémons haben alternative Formen. Einige davon sind aktuell nicht spielbar, wie Megas oder Gigantamax. Diese Formen sind Teil von besonderen Spielmechaniken, die nur in bestimmten Generationen verfügbar waren.
+Manche Formen sind nicht spielbar oder andere sind quasi identisch mit der Standardform. Diese Formen werden aus dem Datensatz entfernt. Die anderen Formen werden in der Analyse als eigenes Pokémon betrachtet und bleiben im Datensatz bestehen.
 ```{r}
-pokemon_filtered <- filter(pokemon_filtered, !Alternate.Form.Name %in% c("Mega", "Mega X", "Mega Y", "Gigantamax", "Female", "Fan", "Galar Zen", "Low Key Gigantamax", 
+Pokémon_filtered <- filter(Pokémon_filtered, !Alternate.Form.Name %in% c("Mega", "Mega X", "Mega Y", "Gigantamax", "Female", "Fan", "Galar Zen", "Low Key Gigantamax", 
                                                                                               "Lowkey", "Snowy", "Starter", "Zen", "Heat", "Wash", "Rainy", "Eternamax"))
 ```
 
-Wir wollen die einzelnen Generationen betrachten. In dem Datensatz steht diese Information nur indirekt und zwar werden die "Game of Origin" auf gelistet. Also die Spiele in denen die Pokemons das erste Mal vorkamen. Eine Generation besteht aus mehreren spielen und wir erzeugen die Generationen Spalte in dem wir die Spiele auf die jeweilige Generation mapen.
+Wir wollen die einzelnen Generationen betrachten. In dem Datensatz steht diese Information nur indirekt und zwar werden die "Game of Origin" aufgelistet. Also die Spiele, in denen die Pokémons das erste Mal vorkamen. Eine Generation besteht aus mehreren Spielen und wir erzeugen die Generationen-Spalte, in dem wir die Spiele auf die jeweilige Generation mappen.
 ```{r}
-origin_mapping <- c("Red" = 1, "Gold" = 2, "Emerald" = 3, "Ruby" = 3, "Diamond" = 4, "Black" = 5, "Black 2" = 5, "X" = 6, "Sun" = 7, "Ultra Sun" = 7, "Pokemon GO" = 8, "Sword" = 8, "Scarlet" = 9, "Legends: Arceus" = 9)
-pokemon_filtered <- mutate(pokemon_filtered, Generation = origin_mapping[match(pokemon_filtered$"Game.s..of.Origin", names(origin_mapping))])
+origin_mapping <- c("Red" = 1, "Gold" = 2, "Emerald" = 3, "Ruby" = 3, "Diamond" = 4, "Black" = 5, "Black 2" = 5, "X" = 6, "Sun" = 7, "Ultra Sun" = 7, "Pokémon GO" = 8, "Sword" = 8, "Scarlet" = 9, "Legends: Arceus" = 9)
+Pokémon_filtered <- mutate(Pokémon_filtered, Generation = origin_mapping[match(Pokémon_filtered$"Game.s..of.Origin", names(origin_mapping))])
 ```
-Zuletzt werden für die Jeweiligen Generationen Farben zur visualisierung gesetzt.
+Zuletzt werden für die jeweiligen Generationen Farben zur Visualisierung gesetzt.
 ```{r}
 generation_colours <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#999999")
 ```
 
 Nun können wir uns eine Übersicht über den aufgeräumten Datensatz verschaffen.
 ```{r}
-glimpse(pokemon_filtered)
+glimpse(Pokémon_filtered)
 ```
 
 ## Analyse
 
 
 
-Zunächst haben wir die aufsummierten Basestats der Pokemons über deren Pokedex Nummer (Diese nummer ist in den Spielen ein unique ID für jedes Pokemon) ausgeben lassen. Das schwächste ist blau das stärkste ist rot, die anderen einGradient dazwischen. 
+Zunächst haben wir die aufsummierten Basestats der Pokémons über deren Pokedex Nummer (Diese Nummer ist in den Spielen eine unique ID für jedes Pokémon) ausgeben lassen. Das Schwächste ist blau das Stärkste ist rot, die anderen ein Gradient dazwischen. 
 ```{r}
-ggplot(pokemon_filtered, aes(x = Pokedex.Number, y = Base.Stat.Total, color = Base.Stat.Total)) + 
+ggplot(Pokémon_filtered, aes(x = Pokedex.Number, y = Base.Stat.Total, color = Base.Stat.Total)) + 
   geom_point() +
-  labs(title = "Pokemon Base Stat Totals", y = "Base Stat Total") +
-  scale_y_continuous(limits = c(100, max(pokemon_filtered$Base.Stat.Total))) +
+  labs(title = "Pokémon Base Stat Totals", y = "Base Stat Total") +
+  scale_y_continuous(limits = c(100, max(Pokémon_filtered$Base.Stat.Total))) +
   scale_color_gradient(low = "darkblue", high = "red")
 ```
 
-Daraus zeigt sich, dass die Punkte zwischen 450-550 verdichtet sind. Außerdem gibt es bestimmte Werte, die häufiger auftreten wie 600. Dieser Wert wird einmal bis maximal 2 mal pro Generation vergeben und gehört zu Pokemons die dem Spieler erst spät im Spiel verfügbar und selten sind. Die Community nennt sie pseudo legendär an Anlehnung an legenäre Pokemons.
+Daraus zeigt sich, dass die Punkte zwischen 450-550 verdichtet sind. Außerdem gibt es bestimmte Werte, die häufiger auftreten wie 600. Dieser Wert wird einmal bis maximal zweimal pro Generation vergeben und gehört zu Pokémons, die dem Spieler erst spät im Spiel verfügbar und selten sind. Die Community nennt sie pseudolegendär in Anlehnung an legenäre Pokémons.
 
-Legendäre Pokémon sind besonders stark deswegen wird angeschaut, wie diese auf die 
-unterschiedlichen Generationen verteilt sind. Sie besitzen tendenziell die höchsten Baststats im Spiel.
-Deshalb wäre es interessant zu sehen, wie das Verhähltnis von legendären zu normalen Pokemons ist. Pseudo legendäre sind eine Unterkategorie der Legedären Pokemons. Nicht zu verwechseln mit den Pseudo Legendäre die als normales Pokemon gelten. Wir wollen uns anschauen wie die legendäre Pokemons auf die spiele verteilt sind und welchen anteil sie in den Generationen darstellen.
+Legendäre Pokémon sind besonders stark, deswegen wird angeschaut, wie diese auf die 
+unterschiedlichen Generationen verteilt sind. Sie besitzen tendenziell die höchsten Basestats im Spiel.
+Deshalb wäre es interessant zu sehen, wie das Verhältnis von legendären zu normalen Pokémons ist. Pseudolegendäre sind eine Unterkategorie der legedären Pokémons. Nicht zu verwechseln mit den Pseudolegendären, die als normales Pokémon gelten. Wir wollen uns, anschauen wie die legendäre Pokémons auf die Spiele verteilt sind und welchen Anteil sie in den Generationen darstellen.
 
 ```{r}
-legendary_counts <- pokemon_filtered %>%
+legendary_counts <- Pokémon_filtered %>%
   group_by(Generation, Legendary.Type) %>%
   summarize(count = n())
 ```
-
-# Create a stacked bar chart showing the share of each Legendary.Type in each Generation
-
-Im folgenden Diagram wird die Verteilung der Legendären Pokemon auf die jeweiligen Spiel Generationen visualisiert.
+Im folgenden Diagramm wird die Verteilung der legendären Pokémon auf die jeweiligen Spielgenerationen visualisiert.
 ```{r}
 ggplot(legendary_counts, aes(x = Generation, y = count, fill = Legendary.Type)) +
   geom_col() +
   scale_color_manual(values = generation_colours)
 ```
-Es stellt sich heraus, dass die Anzahl und Anteil der legendären Pokemons zwar in der ersten Generation am geringsten war aber die neueste Generation besitzt im Vegleich zu den vorherigen wenig legendäre. Daran lässt sich also kein Powercreep erkennen.
+Es stellt sich heraus, dass die Anzahl und Anteil der legendären Pokémons zwar in der ersten Generation am geringsten war aber die neueste Generation besitzt im Vegleich zu den vorherigen wenig legendäre. Daran lässt sich also kein Powercreep erkennen.
 
-Nun werden die einzelnen Basiswerte als Boxplot pro generation betrachtet.
+Nun werden die einzelnen Basiswerte als Boxplot pro Generation betrachtet.
 ```{r}
-ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Health.Stat, fill = factor(Generation))) +
+ggplot(data = Pokémon_filtered, aes(x = factor(Generation), y = Health.Stat, fill = factor(Generation))) +
   geom_boxplot() +
   scale_color_manual(values = generation_colours)
 ```
@@ -122,14 +119,14 @@ ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Health.Stat, fil
 Analyse der Angriffsstärken über die Generationen.
 
 ```{r}
-ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Attack.Stat, fill = factor(Generation))) +
+ggplot(data = Pokémon_filtered, aes(x = factor(Generation), y = Attack.Stat, fill = factor(Generation))) +
   geom_boxplot() +
   scale_color_manual(values = generation_colours)
 ```
-Analyse der Verteidigunswerte über die Generationen.
+Analyse der Verteidigungswerte über die Generationen.
 
 ```{r}
-ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Defense.Stat, fill = factor(Generation))) +
+ggplot(data = Pokémon_filtered, aes(x = factor(Generation), y = Defense.Stat, fill = factor(Generation))) +
   geom_boxplot() +
   scale_color_manual(values = generation_colours)
 ```
@@ -137,7 +134,7 @@ ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Defense.Stat, fi
 Analyse der Spezialattacken-Stärken über die Generationen.
 
 ```{r}
-ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Special.Attack.Stat, fill = factor(Generation))) +
+ggplot(data = Pokémon_filtered, aes(x = factor(Generation), y = Special.Attack.Stat, fill = factor(Generation))) +
   geom_boxplot() +
   scale_color_manual(values = generation_colours)
 ```
@@ -145,44 +142,44 @@ ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Special.Attack.S
 Analyse der Spezialverteidigungen über die Generationen.
 
 ```{r}
-ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Special.Defense.Stat, fill = factor(Generation))) +
+ggplot(data = Pokémon_filtered, aes(x = factor(Generation), y = Special.Defense.Stat, fill = factor(Generation))) +
   geom_boxplot() +
   scale_color_manual(values = generation_colours)
 ```
 
-Bei dieser Analyse fällt auf, dass die Generationen meist sehr eng sowohl beim Median als auch bei den WHiskern beieinander liegen. Im  Normallfall ist die zahl der aus Reiser nach oben und unten nicht auffällig.
+Bei dieser Analyse fällt auf, dass die Generationen meist sehr eng - sowohl beim Median als auch bei den Whiskern - beieinander liegen. Im Normallfall ist die Zahl der Ausreiser nach oben und unten nicht auffällig.
 
 Dennoch wirken die neuen Generationen meist etwas weiter oben. 
 
 Dieser Eindruck verstärkt sich, wenn wir die Basiswerte aufsummiert betrachten. Gerade wenn man den Median betrachtet wird dies klar.
 ```{r}
-ggplot(data = pokemon_filtered, aes(x = factor(Generation), y = Base.Stat.Total, fill = factor(Generation))) +
+ggplot(data = Pokémon_filtered, aes(x = factor(Generation), y = Base.Stat.Total, fill = factor(Generation))) +
   geom_boxplot() +
   scale_color_manual(values = generation_colours)
 ```
 
-Nun werden wir die Legendären pokemons entfernt weil das vielleicht ein anderen Blick auf die Sache ermöglicht. Dafür werden die legendären rausgefiltert und ein Boyplot erstellt.
+Nun werden wir die legendären Pokémons entfernt, weil das vielleicht einen anderen Blick auf die Sache ermöglicht. Dafür werden die legendären rausgefiltert und ein Boxplot erstellt.
 
 ```{r}
-pokemon_leg_filtered <- filter(pokemon_filtered, !Legendary.Type %in% c("Legendary", "Mythical","Sub-Legendary"))
-ggplot(data = pokemon_leg_filtered, aes(x = factor(Generation), y = Base.Stat.Total, fill = factor(Generation))) +
+Pokémon_leg_filtered <- filter(Pokémon_filtered, !Legendary.Type %in% c("Legendary", "Mythical","Sub-Legendary"))
+ggplot(data = Pokémon_leg_filtered, aes(x = factor(Generation), y = Base.Stat.Total, fill = factor(Generation))) +
   geom_boxplot() +
   scale_color_manual(values = generation_colours)
 ```
-Jetzt ist sehr gut am Median zu sehen, dass die 4te Generation recht stark ist und einen Hochpunkt in der ersten Hälfte darstellt. Außerdem ist der Median seit der 5ten Generation kontinuierlich gestiegen und hat mittlerweile den hochpunkt der 4ten Generation überschritten. Die aktuellste genration hand zudem die größten whiskers nach oben. 
+Jetzt ist sehr gut am Median zu sehen, dass die vierte Generation recht stark ist und einen Hochpunkt in der ersten Hälfte darstellt. Außerdem ist der Median seit der funften Generation kontinuierlich gestiegen und hat mittlerweile den Hochpunkt der vierten Generation überschritten. Die aktuellste Generation hat zudem die größten Whiskers nach oben. 
 
-Im folgenden wurde der median nochmal über die einzelnen Generationen als Boxplot betrachtet um den verlauf des median zu verdeutlichen.
+Im folgenden wurde der Median nochmal über die einzelnen Generationen als Boxplot betrachtet, um den Verlauf des Median zu verdeutlichen.
 ```{r}
-ggplot(data = pokemon_leg_filtered, aes(x = factor(Generation), y = Base.Stat.Total, fill = factor(Generation))) +
+ggplot(data = Pokémon_leg_filtered, aes(x = factor(Generation), y = Base.Stat.Total, fill = factor(Generation))) +
   stat_summary(fun.y = "median", geom = "bar") +
   scale_fill_manual(values = generation_colours)
 ```
 
 ## Fazit
 
-Unsere Analyse zeigt klar, dass die normalen Pokemons seit der 5ten Generation immer höhere Basiswerte besitzen. In diesem Hinblick ist die aktuellste Pokemon Generation 9 tatsächlich auch die Stärkste Generation. Die Analyse bekräftigt also den Vorwurf des "Powerceeps" in Pokemon.
+Unsere Analyse zeigt klar, dass die normalen Pokémons seit der fünften Generation immer höhere Basiswerte besitzen. In diesem Hinblick ist die aktuellste Pokémon Generation 9 tatsächlich auch die stärkste Generation. Die Analyse bekräftigt also den Vorwurf des Powercreeps in Pokémon.
 
-Als klare Bestätigung für den Powercreep ist die Analyse aber auch nicht, weil auch andere Faktoren, wie Fähigkeiten oder Attacken, die Stärke eines Pokemons beinflussen. Diese Faktoren einzubeziehen ist mit unserem Datensatz leider nicht möglich und außerdem sehr komplex. Unsere Analyse sagt lediglich aus, dass die Basiswerte ein Indiz für den Vorwurf des "Powercreeps" sind.
+Eine klare Bestätigung für den Powercreep ist die Analyse aber auch nicht, weil auch andere Faktoren, wie Fähigkeiten oder Attacken, die Stärke eines Pokémons beeinflussen. Diese Faktoren einzubeziehen ist mit unserem Datensatz leider nicht möglich und außerdem sehr komplex. Unsere Analyse sagt lediglich aus, dass die Basiswerte ein Indiz für den Vorwurf des Powercreeps sind.
 
 
 

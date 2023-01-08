@@ -1754,30 +1754,30 @@ display: none;
 <!-- rnb-text-begin -->
 <div id="analyse-eines-historischen-pokérrrmon-datensatzes" class="section level1">
 <h1>Analyse eines historischen Poké(rrr)mon Datensatzes</h1>
-<p>von Larrrs Brroche und Peterrr Scheu (das mit den r’s lassen wir
+<p>von Larrrs Brrroche und Peterrr Scheu (das mit den r’s lassen wir
 so)</p>
 <div id="einleitung" class="section level2">
 <h2>Einleitung</h2>
-<p>Pokémon ist ein Spiel der japanischen Spieleentwickler Firma Game
-Freak im Spiel geht es darum, Wesen namens Pokémon zu fangen und zu
+<p>Pokémon ist ein Spiel der japanischen Spieleentwickler Firma “Game
+Freak” im Spiel geht es darum, Wesen namens Pokémon zu fangen und zu
 sammeln. Mit den gesammelten Wesen kann man dann gegen andere Spieler
 und wilde Pokémon kämpfen.</p>
-<p>Es gibt mittlerweile über tausend Pokemons, die alle unterschiedlich
-stark sind. Ob ein Pokemon stark ist lässt sich an mehreren Faktoren
+<p>Es gibt mittlerweile über tausend Pokémons, die alle unterschiedlich
+stark sind. Ob ein Pokémon stark ist lässt sich an mehreren Faktoren
 erkennen. Einer dieser Faktoren sind die sogenannten Basiswerte.
-Pokemons besitzen 6 Basis Werte:: Angriff/Spezial Angriff sagen wie
-stark die (spezial-) Attacken der Pokemons sind, Verteidigung/Spezial
-Verteidgung kombiniert mit den Lebens Punkten sagen aus, wie gut ein
-Pokemon (spezial-) einstecken kann, die Geschwindikeit sagt aus, wie
-schnell ein Pokemon angreift (das Spiel Pokemon ist Runden basiert,
-schnelle Pokemons greifen früher in der Runde an als langsamere).</p>
-<p>Ende 2022 wurde die neunte Pokemongeneration veröffentlicht und viele
-Spieler sagen es hätte ein “Powercreep” stattgefunden. Das bedeutet,
-dass die Spieler die neuen Pokemons stärker finden als die der alten
-Generationen. Der Vorwurf des “Powercreeps” ist nicht neu und findet
-seit einigen Pokemon Generationen mit jeder neuen Generation statt.</p>
-<p>In dieser Datenanalyse geht es darum, herauszufinden ob der Vorwurf
-des Powercreeps anhand der Basiswerte nachzuvollziehen ist oder ob
+Pokémons besitzen 6 Basis Werte: Angriff/Spezial Angriff sagen wie stark
+die (Spezial-) Attacken der Pokémons sind, Verteidigung/Spezial
+Verteidgung kombiniert mit den Lebenspunkten sagen aus, wie gut ein
+Pokémon (spezial-) einstecken kann, die Geschwindigkeit sagt aus, wie
+schnell ein Pokémon angreift. Das Spiel Pokémon ist Runden basiert,
+schnelle Pokémons greifen früher in der Runde an als langsamere.</p>
+<p>Ende 2022 wurde die neunte Pokémongeneration veröffentlicht und viele
+Spieler sagen, es hätte ein “Powercreep” stattgefunden. Das bedeutet,
+dass die Spieler die neuen Pokémons stärker finden als die der alten
+Generationen. Der Vorwurf des Powercreeps ist nicht neu und findet seit
+einigen Pokémongenerationen mit jeder neuen Generation statt.</p>
+<p>In dieser Datenanalyse geht es darum herauszufinden, ob der Vorwurf
+des Powercreeps anhand der Basiswerte nachzuvollziehen ist, oder ob
 andere Faktoren wie Attacken und Fähigkeiten hierfür ausschlaggebend
 sind.</p>
 <p>Zur Analyse dient ein Datensatz über alle Pokémons aus allen
@@ -1794,201 +1794,266 @@ library(ggplot2)
 library(magrittr)
 library(dplyr)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
-<pre><code>
-Attaching package: ‘dplyr’
-
-The following objects are masked from ‘package:stats’:
-
-    filter, lag
-
-The following objects are masked from ‘package:base’:
-
-    intersect, setdiff, setequal, union</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Die Datenbank liegt im CSV-Format vor und kann als solche direkt
 geladen werden. Sie umfasst 1235 Zeilen und 45 Spalten.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9rZW1vbl9kYXRhIDwtIHJlYWRfY3N2KFwiREhCV19sYWIvUnJycnIvcl9wcm9qZWN0X2RoYncvZGF0YS9wa21fZGF0YWJhc2UuY3N2XCIpXG5gYGAifQ== -->
-<pre class="r"><code>pokemon_data &lt;- read_csv(&quot;DHBW_lab/Rrrrr/r_project_dhbw/data/pkm_database.csv&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUG9rw6ltb25fZGF0YSA8LSByZWFkX2NzdihcIn4vcmVwb3Mvcl9wcm9qZWN0X2RoYncvZGF0YS9wa21fZGF0YWJhc2UuY3N2XCIpXG5gYGAifQ== -->
+<pre class="r"><code>Pokémon_data &lt;- read_csv(&quot;~/repos/r_project_dhbw/data/pkm_database.csv&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6ICdESEJXX2xhYi9ScnJyci9yX3Byb2plY3RfZGhidy9kYXRhL3BrbV9kYXRhYmFzZS5jc3YnIGRvZXMgbm90IGV4aXN0IGluIGN1cnJlbnQgd29ya2luZyBkaXJlY3RvcnkgKCcvVXNlcnMvbGFyc2Jyb2NoZS9ESEJXX2xhYi9ScnJyci9yX3Byb2plY3RfZGhidycpLlxuIn0= -->
-<pre><code>Error: &#39;DHBW_lab/Rrrrr/r_project_dhbw/data/pkm_database.csv&#39; does not exist in current working directory (&#39;/Users/larsbroche/DHBW_lab/Rrrrr/r_project_dhbw&#39;).</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Alle Kategorischen Daten werden von “” eingeleitet, da dies zur
-Weiterverarbeitung ungünstig ist werden zuerst alle “” entfernt.</p>
+<p>Alle kategorischen Daten werden von “” eingeleitet, da dies zur
+Weiterverarbeitung ungünstig ist, werden zuerst alle “” entfernt.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUG9rw6ltb25fZGF0YSA8LSBQb2vDqW1vbl9kYXRhICU+JVxuICBtdXRhdGVfaWYoaXMuY2hhcmFjdGVyLCBnc3ViLCBwYXR0ZXJuID0gXCJcXFxcXFxcIlwiLCByZXBsYWNlbWVudCA9IFwiXCIpXG5gYGAifQ== -->
+<pre class="r"><code>Pokémon_data &lt;- Pokémon_data %&gt;%
+  mutate_if(is.character, gsub, pattern = &quot;\\\&quot;&quot;, replacement = &quot;&quot;)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Die Spaltennamen enthalten Leerzeichen dies ist bei der Verwendung
+<p>Die Spaltennamen enthalten Leerzeichen. Dies ist bei der Verwendung
 des Datensatzes in R ungünstig, weshalb die Leerzeichen mit Punkten
 ersetzt werden.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmFtZXMoUG9rw6ltb25fZGF0YSkgPC0gbWFrZS5uYW1lcyhuYW1lcyhQb2vDqW1vbl9kYXRhKSlcbmBgYCJ9 -->
+<pre class="r"><code>names(Pokémon_data) &lt;- make.names(names(Pokémon_data))</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Die Spalten die nicht für die Analyse nötig sind werden entfernt. Das
-macht die Daten beim Debugging übersichtlicher.</p>
+<p>Die Spalten, die nicht für die Analyse nötig sind werden entfernt.
+Das macht die Daten beim Debugging übersichtlicher.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUG9rw6ltb25fZmlsdGVyZWQgPC0gc2VsZWN0KFBva8OpbW9uX2RhdGEsICAtY29udGFpbnMoXCJFVlwiKSwgLWNvbnRhaW5zKFwiRWdnXCIpLCAtY29udGFpbnMoXCJFeHBlcmllbmNlXCIpLCAtY29udGFpbnMoXCJBYmlsaXR5XCIpLCAtY29udGFpbnMoXCJSYXRpb1wiKSwgLWNvbnRhaW5zKFwiSGFwcGluZXNzXCIpLCAtY29udGFpbnMoXCJIZWlnaHRcIiksIC1jb250YWlucyhcIldlaWdodFwiKSwgLWNvbnRhaW5zKFwiQ2xhc3NpZmljYXRpb25cIiksIC1jb250YWlucyhcIlJhdGVcIikpXG5gYGAifQ== -->
+<pre class="r"><code>Pokémon_filtered &lt;- select(Pokémon_data,  -contains(&quot;EV&quot;), -contains(&quot;Egg&quot;), -contains(&quot;Experience&quot;), -contains(&quot;Ability&quot;), -contains(&quot;Ratio&quot;), -contains(&quot;Happiness&quot;), -contains(&quot;Height&quot;), -contains(&quot;Weight&quot;), -contains(&quot;Classification&quot;), -contains(&quot;Rate&quot;))</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Manche Pokemons haben alternative Formen einige davon sind aktuell
+<p>Manche Pokémons haben alternative Formen. Einige davon sind aktuell
 nicht spielbar, wie Megas oder Gigantamax. Diese Formen sind Teil von
 besonderen Spielmechaniken, die nur in bestimmten Generationen verfügbar
 waren. Manche Formen sind nicht spielbar oder andere sind quasi
-identisch mit der standard Form. Diese Formen werden aus dem Datensatz
-entfernt. Die anderen Formen werden in der Analyse als eigenes Pokemon
+identisch mit der Standardform. Diese Formen werden aus dem Datensatz
+entfernt. Die anderen Formen werden in der Analyse als eigenes Pokémon
 betrachtet und bleiben im Datensatz bestehen.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUG9rw6ltb25fZmlsdGVyZWQgPC0gZmlsdGVyKFBva8OpbW9uX2ZpbHRlcmVkLCAhQWx0ZXJuYXRlLkZvcm0uTmFtZSAlaW4lIGMoXCJNZWdhXCIsIFwiTWVnYSBYXCIsIFwiTWVnYSBZXCIsIFwiR2lnYW50YW1heFwiLCBcIkZlbWFsZVwiLCBcIkZhblwiLCBcIkdhbGFyIFplblwiLCBcIkxvdyBLZXkgR2lnYW50YW1heFwiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcIkxvd2tleVwiLCBcIlNub3d5XCIsIFwiU3RhcnRlclwiLCBcIlplblwiLCBcIkhlYXRcIiwgXCJXYXNoXCIsIFwiUmFpbnlcIiwgXCJFdGVybmFtYXhcIikpXG5gYGAifQ== -->
+<pre class="r"><code>Pokémon_filtered &lt;- filter(Pokémon_filtered, !Alternate.Form.Name %in% c(&quot;Mega&quot;, &quot;Mega X&quot;, &quot;Mega Y&quot;, &quot;Gigantamax&quot;, &quot;Female&quot;, &quot;Fan&quot;, &quot;Galar Zen&quot;, &quot;Low Key Gigantamax&quot;, 
+                                                                                              &quot;Lowkey&quot;, &quot;Snowy&quot;, &quot;Starter&quot;, &quot;Zen&quot;, &quot;Heat&quot;, &quot;Wash&quot;, &quot;Rainy&quot;, &quot;Eternamax&quot;))</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Wir wollen die einzelnen Generationen betrachten. In dem Datensatz
 steht diese Information nur indirekt und zwar werden die “Game of
-Origin” auf gelistet. Also die Spiele in denen die Pokemons das erste
-Mal vorkamen. Eine Generation besteht aus mehreren spielen und wir
-erzeugen die Generationen Spalte in dem wir die Spiele auf die jeweilige
-Generation mapen.</p>
+Origin” aufgelistet. Also die Spiele, in denen die Pokémons das erste
+Mal vorkamen. Eine Generation besteht aus mehreren Spielen und wir
+erzeugen die Generationen-Spalte, in dem wir die Spiele auf die
+jeweilige Generation mappen.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3JpZ2luX21hcHBpbmcgPC0gYyhcIlJlZFwiID0gMSwgXCJHb2xkXCIgPSAyLCBcIkVtZXJhbGRcIiA9IDMsIFwiUnVieVwiID0gMywgXCJEaWFtb25kXCIgPSA0LCBcIkJsYWNrXCIgPSA1LCBcIkJsYWNrIDJcIiA9IDUsIFwiWFwiID0gNiwgXCJTdW5cIiA9IDcsIFwiVWx0cmEgU3VuXCIgPSA3LCBcIlBva8OpbW9uIEdPXCIgPSA4LCBcIlN3b3JkXCIgPSA4LCBcIlNjYXJsZXRcIiA9IDksIFwiTGVnZW5kczogQXJjZXVzXCIgPSA5KVxuUG9rw6ltb25fZmlsdGVyZWQgPC0gbXV0YXRlKFBva8OpbW9uX2ZpbHRlcmVkLCBHZW5lcmF0aW9uID0gb3JpZ2luX21hcHBpbmdbbWF0Y2goUG9rw6ltb25fZmlsdGVyZWQkXCJHYW1lLnMuLm9mLk9yaWdpblwiLCBuYW1lcyhvcmlnaW5fbWFwcGluZykpXSlcbmBgYCJ9 -->
+<pre class="r"><code>origin_mapping &lt;- c(&quot;Red&quot; = 1, &quot;Gold&quot; = 2, &quot;Emerald&quot; = 3, &quot;Ruby&quot; = 3, &quot;Diamond&quot; = 4, &quot;Black&quot; = 5, &quot;Black 2&quot; = 5, &quot;X&quot; = 6, &quot;Sun&quot; = 7, &quot;Ultra Sun&quot; = 7, &quot;Pokémon GO&quot; = 8, &quot;Sword&quot; = 8, &quot;Scarlet&quot; = 9, &quot;Legends: Arceus&quot; = 9)
+Pokémon_filtered &lt;- mutate(Pokémon_filtered, Generation = origin_mapping[match(Pokémon_filtered$&quot;Game.s..of.Origin&quot;, names(origin_mapping))])</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Zuletzt werden für die Jeweiligen Generationen Farben zur
-visualisierung gesetzt.</p>
+<p>Zuletzt werden für die jeweiligen Generationen Farben zur
+Visualisierung gesetzt.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2VuZXJhdGlvbl9jb2xvdXJzIDwtIGMoXCIjMDAwMDAwXCIsIFwiI0U2OUYwMFwiLCBcIiM1NkI0RTlcIiwgXCIjMDA5RTczXCIsIFwiI0YwRTQ0MlwiLCBcIiMwMDcyQjJcIiwgXCIjRDU1RTAwXCIsIFwiI0NDNzlBN1wiLCBcIiM5OTk5OTlcIilcbmBgYCJ9 -->
+<pre class="r"><code>generation_colours &lt;- c(&quot;#000000&quot;, &quot;#E69F00&quot;, &quot;#56B4E9&quot;, &quot;#009E73&quot;, &quot;#F0E442&quot;, &quot;#0072B2&quot;, &quot;#D55E00&quot;, &quot;#CC79A7&quot;, &quot;#999999&quot;)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Nun können wir uns eine Übersicht über den aufgeräumten Datensatz
 verschaffen.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2xpbXBzZShQb2vDqW1vbl9maWx0ZXJlZClcbmBgYCJ9 -->
+<pre class="r"><code>glimpse(Pokémon_filtered)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
 <div id="analyse" class="section level2">
 <h2>Analyse</h2>
-<p>Zunächst haben wir die aufsummierten Basestats der Pokemons über
-deren Pokedex Nummer (Diese nummer ist in den Spielen ein unique ID für
-jedes Pokemon) ausgeben lassen. Das schwächste ist blau das stärkste ist
-rot, die anderen einGradient dazwischen.</p>
+<p>Zunächst haben wir die aufsummierten Basestats der Pokémons über
+deren Pokedex Nummer (Diese Nummer ist in den Spielen eine unique ID für
+jedes Pokémon) ausgeben lassen. Das Schwächste ist blau das Stärkste ist
+rot, die anderen ein Gradient dazwischen.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KFBva8OpbW9uX2ZpbHRlcmVkLCBhZXMoeCA9IFBva2VkZXguTnVtYmVyLCB5ID0gQmFzZS5TdGF0LlRvdGFsLCBjb2xvciA9IEJhc2UuU3RhdC5Ub3RhbCkpICsgXG4gIGdlb21fcG9pbnQoKSArXG4gIGxhYnModGl0bGUgPSBcIlBva8OpbW9uIEJhc2UgU3RhdCBUb3RhbHNcIiwgeSA9IFwiQmFzZSBTdGF0IFRvdGFsXCIpICtcbiAgc2NhbGVfeV9jb250aW51b3VzKGxpbWl0cyA9IGMoMTAwLCBtYXgoUG9rw6ltb25fZmlsdGVyZWQkQmFzZS5TdGF0LlRvdGFsKSkpICtcbiAgc2NhbGVfY29sb3JfZ3JhZGllbnQobG93ID0gXCJkYXJrYmx1ZVwiLCBoaWdoID0gXCJyZWRcIilcbmBgYCJ9 -->
+<pre class="r"><code>ggplot(Pokémon_filtered, aes(x = Pokedex.Number, y = Base.Stat.Total, color = Base.Stat.Total)) + 
+  geom_point() +
+  labs(title = &quot;Pokémon Base Stat Totals&quot;, y = &quot;Base Stat Total&quot;) +
+  scale_y_continuous(limits = c(100, max(Pokémon_filtered$Base.Stat.Total))) +
+  scale_color_gradient(low = &quot;darkblue&quot;, high = &quot;red&quot;)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Daraus zeigt sich, dass die Punkte zwischen 450-550 verdichtet sind.
 Außerdem gibt es bestimmte Werte, die häufiger auftreten wie 600. Dieser
-Wert wird einmal bis maximal 2 mal pro Generation vergeben und gehört zu
-Pokemons die dem Spieler erst spät im Spiel verfügbar und selten sind.
-Die Community nennt sie pseudo legendär an Anlehnung an legenäre
-Pokemons.</p>
-<p>Legendäre Pokémon sind besonders stark deswegen wird angeschaut, wie
+Wert wird einmal bis maximal zweimal pro Generation vergeben und gehört
+zu Pokémons, die dem Spieler erst spät im Spiel verfügbar und selten
+sind. Die Community nennt sie pseudolegendär in Anlehnung an legenäre
+Pokémons.</p>
+<p>Legendäre Pokémon sind besonders stark, deswegen wird angeschaut, wie
 diese auf die unterschiedlichen Generationen verteilt sind. Sie besitzen
-tendenziell die höchsten Baststats im Spiel. Deshalb wäre es interessant
-zu sehen, wie das Verhähltnis von legendären zu normalen Pokemons ist.
-Pseudo legendäre sind eine Unterkategorie der Legedären Pokemons. Nicht
-zu verwechseln mit den Pseudo Legendäre die als normales Pokemon gelten.
-Wir wollen uns anschauen wie die legendäre Pokemons auf die spiele
-verteilt sind und welchen anteil sie in den Generationen darstellen.</p>
+tendenziell die höchsten Basestats im Spiel. Deshalb wäre es interessant
+zu sehen, wie das Verhältnis von legendären zu normalen Pokémons ist.
+Pseudolegendäre sind eine Unterkategorie der legedären Pokémons. Nicht
+zu verwechseln mit den Pseudolegendären, die als normales Pokémon
+gelten. Wir wollen uns, anschauen wie die legendäre Pokémons auf die
+Spiele verteilt sind und welchen Anteil sie in den Generationen
+darstellen.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVnZW5kYXJ5X2NvdW50cyA8LSBQb2vDqW1vbl9maWx0ZXJlZCAlPiVcbiAgZ3JvdXBfYnkoR2VuZXJhdGlvbiwgTGVnZW5kYXJ5LlR5cGUpICU+JVxuICBzdW1tYXJpemUoY291bnQgPSBuKCkpXG5gYGAifQ== -->
+<pre class="r"><code>legendary_counts &lt;- Pokémon_filtered %&gt;%
+  group_by(Generation, Legendary.Type) %&gt;%
+  summarize(count = n())</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
-</div>
-<div id="create-a-stacked-bar-chart-showing-the-share-of-each-legendary.type-in-each-generation" class="section level1">
-<h1>Create a stacked bar chart showing the share of each Legendary.Type
-in each Generation</h1>
-<p>Im folgenden Diagram wird die Verteilung der Legendären Pokemon auf
-die jeweiligen Spiel Generationen visualisiert.</p>
+<p>Im folgenden Diagramm wird die Verteilung der legendären Pokémon auf
+die jeweiligen Spielgenerationen visualisiert.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGxlZ2VuZGFyeV9jb3VudHMsIGFlcyh4ID0gR2VuZXJhdGlvbiwgeSA9IGNvdW50LCBmaWxsID0gTGVnZW5kYXJ5LlR5cGUpKSArXG4gIGdlb21fY29sKCkgK1xuICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gZ2VuZXJhdGlvbl9jb2xvdXJzKVxuYGBgIn0= -->
+<pre class="r"><code>ggplot(legendary_counts, aes(x = Generation, y = count, fill = Legendary.Type)) +
+  geom_col() +
+  scale_color_manual(values = generation_colours)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Es stellt sich heraus, dass die Anzahl und Anteil der legendären
-Pokemons zwar in der ersten Generation am geringsten war aber die
+Pokémons zwar in der ersten Generation am geringsten war aber die
 neueste Generation besitzt im Vegleich zu den vorherigen wenig
 legendäre. Daran lässt sich also kein Powercreep erkennen.</p>
-<p>Nun werden die einzelnen Basiswerte als Boxplot pro generation
+<p>Nun werden die einzelnen Basiswerte als Boxplot pro Generation
 betrachtet.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGRhdGEgPSBQb2vDqW1vbl9maWx0ZXJlZCwgYWVzKHggPSBmYWN0b3IoR2VuZXJhdGlvbiksIHkgPSBIZWFsdGguU3RhdCwgZmlsbCA9IGZhY3RvcihHZW5lcmF0aW9uKSkpICtcbiAgZ2VvbV9ib3hwbG90KCkgK1xuICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gZ2VuZXJhdGlvbl9jb2xvdXJzKVxuYGBgIn0= -->
+<pre class="r"><code>ggplot(data = Pokémon_filtered, aes(x = factor(Generation), y = Health.Stat, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Analyse der Angriffsstärken über die Generationen.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGRhdGEgPSBQb2vDqW1vbl9maWx0ZXJlZCwgYWVzKHggPSBmYWN0b3IoR2VuZXJhdGlvbiksIHkgPSBBdHRhY2suU3RhdCwgZmlsbCA9IGZhY3RvcihHZW5lcmF0aW9uKSkpICtcbiAgZ2VvbV9ib3hwbG90KCkgK1xuICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gZ2VuZXJhdGlvbl9jb2xvdXJzKVxuYGBgIn0= -->
+<pre class="r"><code>ggplot(data = Pokémon_filtered, aes(x = factor(Generation), y = Attack.Stat, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Analyse der Verteidigunswerte über die Generationen.</p>
+<p>Analyse der Verteidigungswerte über die Generationen.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGRhdGEgPSBQb2vDqW1vbl9maWx0ZXJlZCwgYWVzKHggPSBmYWN0b3IoR2VuZXJhdGlvbiksIHkgPSBEZWZlbnNlLlN0YXQsIGZpbGwgPSBmYWN0b3IoR2VuZXJhdGlvbikpKSArXG4gIGdlb21fYm94cGxvdCgpICtcbiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcyA9IGdlbmVyYXRpb25fY29sb3VycylcbmBgYCJ9 -->
+<pre class="r"><code>ggplot(data = Pokémon_filtered, aes(x = factor(Generation), y = Defense.Stat, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Analyse der Spezialattacken-Stärken über die Generationen.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGRhdGEgPSBQb2vDqW1vbl9maWx0ZXJlZCwgYWVzKHggPSBmYWN0b3IoR2VuZXJhdGlvbiksIHkgPSBTcGVjaWFsLkF0dGFjay5TdGF0LCBmaWxsID0gZmFjdG9yKEdlbmVyYXRpb24pKSkgK1xuICBnZW9tX2JveHBsb3QoKSArXG4gIHNjYWxlX2NvbG9yX21hbnVhbCh2YWx1ZXMgPSBnZW5lcmF0aW9uX2NvbG91cnMpXG5gYGAifQ== -->
+<pre class="r"><code>ggplot(data = Pokémon_filtered, aes(x = factor(Generation), y = Special.Attack.Stat, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Analyse der Spezialverteidigungen über die Generationen.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGRhdGEgPSBQb2vDqW1vbl9maWx0ZXJlZCwgYWVzKHggPSBmYWN0b3IoR2VuZXJhdGlvbiksIHkgPSBTcGVjaWFsLkRlZmVuc2UuU3RhdCwgZmlsbCA9IGZhY3RvcihHZW5lcmF0aW9uKSkpICtcbiAgZ2VvbV9ib3hwbG90KCkgK1xuICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gZ2VuZXJhdGlvbl9jb2xvdXJzKVxuYGBgIn0= -->
+<pre class="r"><code>ggplot(data = Pokémon_filtered, aes(x = factor(Generation), y = Special.Defense.Stat, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Bei dieser Analyse fällt auf, dass die Generationen meist sehr eng
-sowohl beim Median als auch bei den WHiskern beieinander liegen. Im
-Normallfall ist die zahl der aus Reiser nach oben und unten nicht
+<p>Bei dieser Analyse fällt auf, dass die Generationen meist sehr eng -
+sowohl beim Median als auch bei den Whiskern - beieinander liegen. Im
+Normallfall ist die Zahl der Ausreiser nach oben und unten nicht
 auffällig.</p>
 <p>Dennoch wirken die neuen Generationen meist etwas weiter oben.</p>
 <p>Dieser Eindruck verstärkt sich, wenn wir die Basiswerte aufsummiert
 betrachten. Gerade wenn man den Median betrachtet wird dies klar.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGRhdGEgPSBQb2vDqW1vbl9maWx0ZXJlZCwgYWVzKHggPSBmYWN0b3IoR2VuZXJhdGlvbiksIHkgPSBCYXNlLlN0YXQuVG90YWwsIGZpbGwgPSBmYWN0b3IoR2VuZXJhdGlvbikpKSArXG4gIGdlb21fYm94cGxvdCgpICtcbiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcyA9IGdlbmVyYXRpb25fY29sb3VycylcbmBgYCJ9 -->
+<pre class="r"><code>ggplot(data = Pokémon_filtered, aes(x = factor(Generation), y = Base.Stat.Total, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Nun werden wir die Legendären pokemons entfernt weil das vielleicht
-ein anderen Blick auf die Sache ermöglicht. Dafür werden die legendären
-rausgefiltert und ein Boyplot erstellt.</p>
+<p>Nun werden wir die legendären Pokémons entfernt, weil das vielleicht
+einen anderen Blick auf die Sache ermöglicht. Dafür werden die
+legendären rausgefiltert und ein Boxplot erstellt.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUG9rw6ltb25fbGVnX2ZpbHRlcmVkIDwtIGZpbHRlcihQb2vDqW1vbl9maWx0ZXJlZCwgIUxlZ2VuZGFyeS5UeXBlICVpbiUgYyhcIkxlZ2VuZGFyeVwiLCBcIk15dGhpY2FsXCIsXCJTdWItTGVnZW5kYXJ5XCIpKVxuZ2dwbG90KGRhdGEgPSBQb2vDqW1vbl9sZWdfZmlsdGVyZWQsIGFlcyh4ID0gZmFjdG9yKEdlbmVyYXRpb24pLCB5ID0gQmFzZS5TdGF0LlRvdGFsLCBmaWxsID0gZmFjdG9yKEdlbmVyYXRpb24pKSkgK1xuICBnZW9tX2JveHBsb3QoKSArXG4gIHNjYWxlX2NvbG9yX21hbnVhbCh2YWx1ZXMgPSBnZW5lcmF0aW9uX2NvbG91cnMpXG5gYGAifQ== -->
+<pre class="r"><code>Pokémon_leg_filtered &lt;- filter(Pokémon_filtered, !Legendary.Type %in% c(&quot;Legendary&quot;, &quot;Mythical&quot;,&quot;Sub-Legendary&quot;))
+ggplot(data = Pokémon_leg_filtered, aes(x = factor(Generation), y = Base.Stat.Total, fill = factor(Generation))) +
+  geom_boxplot() +
+  scale_color_manual(values = generation_colours)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Jetzt ist sehr gut am Median zu sehen, dass die 4te Generation recht
-stark ist und einen Hochpunkt in der ersten Hälfte darstellt. Außerdem
-ist der Median seit der 5ten Generation kontinuierlich gestiegen und hat
-mittlerweile den hochpunkt der 4ten Generation überschritten. Die
-aktuellste genration hand zudem die größten whiskers nach oben.</p>
-<p>Im folgenden wurde der median nochmal über die einzelnen Generationen
-als Boxplot betrachtet um den verlauf des median zu verdeutlichen.</p>
+<p>Jetzt ist sehr gut am Median zu sehen, dass die vierte Generation
+recht stark ist und einen Hochpunkt in der ersten Hälfte darstellt.
+Außerdem ist der Median seit der funften Generation kontinuierlich
+gestiegen und hat mittlerweile den Hochpunkt der vierten Generation
+überschritten. Die aktuellste Generation hat zudem die größten Whiskers
+nach oben.</p>
+<p>Im folgenden wurde der Median nochmal über die einzelnen Generationen
+als Boxplot betrachtet, um den Verlauf des Median zu verdeutlichen.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGRhdGEgPSBQb2vDqW1vbl9sZWdfZmlsdGVyZWQsIGFlcyh4ID0gZmFjdG9yKEdlbmVyYXRpb24pLCB5ID0gQmFzZS5TdGF0LlRvdGFsLCBmaWxsID0gZmFjdG9yKEdlbmVyYXRpb24pKSkgK1xuICBzdGF0X3N1bW1hcnkoZnVuLnkgPSBcIm1lZGlhblwiLCBnZW9tID0gXCJiYXJcIikgK1xuICBzY2FsZV9maWxsX21hbnVhbCh2YWx1ZXMgPSBnZW5lcmF0aW9uX2NvbG91cnMpXG5gYGAifQ== -->
+<pre class="r"><code>ggplot(data = Pokémon_leg_filtered, aes(x = factor(Generation), y = Base.Stat.Total, fill = factor(Generation))) +
+  stat_summary(fun.y = &quot;median&quot;, geom = &quot;bar&quot;) +
+  scale_fill_manual(values = generation_colours)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
 <div id="fazit" class="section level2">
 <h2>Fazit</h2>
-<p>Unsere Analyse zeigt klar, dass die normalen Pokemons seit der 5ten
-Generation immer höhere Basiswerte besitzen. In diesem Hinblick ist die
-aktuellste Pokemon Generation 9 tatsächlich auch die Stärkste
-Generation. Die Analyse bekräftigt also den Vorwurf des “Powerceeps” in
-Pokemon.</p>
-<p>Als klare Bestätigung für den Powercreep ist die Analyse aber auch
+<p>Unsere Analyse zeigt klar, dass die normalen Pokémons seit der
+fünften Generation immer höhere Basiswerte besitzen. In diesem Hinblick
+ist die aktuellste Pokémon Generation 9 tatsächlich auch die stärkste
+Generation. Die Analyse bekräftigt also den Vorwurf des Powercreeps in
+Pokémon.</p>
+<p>Eine klare Bestätigung für den Powercreep ist die Analyse aber auch
 nicht, weil auch andere Faktoren, wie Fähigkeiten oder Attacken, die
-Stärke eines Pokemons beinflussen. Diese Faktoren einzubeziehen ist mit
+Stärke eines Pokémons beeinflussen. Diese Faktoren einzubeziehen ist mit
 unserem Datensatz leider nicht möglich und außerdem sehr komplex. Unsere
 Analyse sagt lediglich aus, dass die Basiswerte ein Indiz für den
-Vorwurf des “Powercreeps” sind.</p>
+Vorwurf des Powercreeps sind.</p>
 <!-- rnb-text-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBBbmFseXNlIGVpbmVzIGhpc3RvcmlzY2hlbiBQb2vDqShycnIpbW9uIERhdGVuc2F0emVzCnZvbiBMYXJycnMgQnJyb2NoZSB1bmQgUGV0ZXJyciBTY2hldSAoZGFzIG1pdCBkZW4gcidzIGxhc3NlbiB3aXIgc28pCgojIyBFaW5sZWl0dW5nIAoKUG9rw6ltb24gaXN0IGVpbiBTcGllbCBkZXIgamFwYW5pc2NoZW4gU3BpZWxlZW50d2lja2xlciBGaXJtYSBHYW1lIEZyZWFrIAppbSBTcGllbCBnZWh0IGVzIGRhcnVtLCBXZXNlbiBuYW1lbnMgUG9rw6ltb24genUgZmFuZ2VuIHVuZCB6dSBzYW1tZWxuLgpNaXQgZGVuIGdlc2FtbWVsdGVuIFdlc2VuIGthbm4gbWFuIGRhbm4gZ2VnZW4gYW5kZXJlIFNwaWVsZXIgdW5kIHdpbGRlIFBva8OpbW9uIGvDpG1wZmVuLgoKRXMgZ2lidCBtaXR0bGVyd2VpbGUgw7xiZXIgdGF1c2VuZCBQb2tlbW9ucywgZGllIGFsbGUgdW50ZXJzY2hpZWRsaWNoIHN0YXJrIHNpbmQuIE9iIGVpbiBQb2tlbW9uIHN0YXJrIGlzdApsw6Rzc3Qgc2ljaCBhbiBtZWhyZXJlbiBGYWt0b3JlbiBlcmtlbm5lbi4gRWluZXIgZGllc2VyIEZha3RvcmVuIHNpbmQgZGllIHNvZ2VuYW5udGVuIEJhc2lzd2VydGUuIFBva2Vtb25zIGJlc2l0emVuIDYgQmFzaXMgV2VydGU6OiBBbmdyaWZmL1NwZXppYWwgQW5ncmlmZiBzYWdlbiB3aWUgc3RhcmsgZGllIChzcGV6aWFsLSkgQXR0YWNrZW4gZGVyIFBva2Vtb25zIHNpbmQsIFZlcnRlaWRpZ3VuZy9TcGV6aWFsIFZlcnRlaWRndW5nIGtvbWJpbmllcnQgbWl0IGRlbiBMZWJlbnMgUHVua3RlbiBzYWdlbiBhdXMsIHdpZSBndXQgZWluIFBva2Vtb24gKHNwZXppYWwtKSBlaW5zdGVja2VuIGthbm4sIGRpZSBHZXNjaHdpbmRpa2VpdCBzYWd0IGF1cywgd2llIHNjaG5lbGwgZWluIFBva2Vtb24gYW5ncmVpZnQgKGRhcyBTcGllbCBQb2tlbW9uIGlzdCBSdW5kZW4gYmFzaWVydCwgc2NobmVsbGUgUG9rZW1vbnMgZ3JlaWZlbiBmcsO8aGVyIGluIGRlciBSdW5kZSBhbiBhbHMgbGFuZ3NhbWVyZSkuCgpFbmRlIDIwMjIgd3VyZGUgZGllIG5ldW50ZSBQb2tlbW9uZ2VuZXJhdGlvbiB2ZXLDtmZmZW50bGljaHQgdW5kIHZpZWxlIFNwaWVsZXIgc2FnZW4gZXMgaMOkdHRlIGVpbiAiUG93ZXJjcmVlcCIgc3RhdHRnZWZ1bmRlbi4gRGFzIGJlZGV1dGV0LCBkYXNzIGRpZSBTcGllbGVyIGRpZSBuZXVlbiBQb2tlbW9ucyBzdMOkcmtlciBmaW5kZW4gYWxzIGRpZSBkZXIgYWx0ZW4gR2VuZXJhdGlvbmVuLiBEZXIgVm9yd3VyZiBkZXMgIlBvd2VyY3JlZXBzIiBpc3QgbmljaHQgbmV1IHVuZCBmaW5kZXQgc2VpdCBlaW5pZ2VuIFBva2Vtb24gR2VuZXJhdGlvbmVuIG1pdCBqZWRlciBuZXVlbiBHZW5lcmF0aW9uIHN0YXR0LgoKSW4gZGllc2VyIERhdGVuYW5hbHlzZSBnZWh0IGVzIGRhcnVtLCBoZXJhdXN6dWZpbmRlbiBvYiBkZXIgVm9yd3VyZiBkZXMgUG93ZXJjcmVlcHMgYW5oYW5kIGRlciBCYXNpc3dlcnRlIG5hY2h6dXZvbGx6aWVoZW4gaXN0IG9kZXIgb2IgYW5kZXJlIEZha3RvcmVuIHdpZSBBdHRhY2tlbiB1bmQgRsOkaGlna2VpdGVuIGhpZXJmw7xyIGF1c3NjaGxhZ2dlYmVuZCBzaW5kLgoKWnVyIEFuYWx5c2UgZGllbnQgZWluIERhdGVuc2F0eiDDvGJlciBhbGxlIFBva8OpbW9ucyBhdXMgYWxsZW4gdmVyc2NoaWVkZW5lbiBTcGllbGVuIMO8YmVyIGRpZSBKYWhyZS4KCiMjIExhZGVuIHVuZCBiZXJlaW5pZ2VuIGRlciBEYXRlbgoKWnVlcnN0IHdlcmRlbiBBYmjDpG5naWdrZWl0ZW4gZ2VsYWRlbi4KYGBge3J9CmxpYnJhcnkocmVhZHIpCmxpYnJhcnkoZ2dwbG90MikKbGlicmFyeShtYWdyaXR0cikKbGlicmFyeShkcGx5cikKYGBgCgpEaWUgRGF0ZW5iYW5rIGxpZWd0IGltIENTVi1Gb3JtYXQgdm9yIHVuZCBrYW5uIGFscyBzb2xjaGUgZGlyZWt0IGdlbGFkZW4gd2VyZGVuLgpTaWUgdW1mYXNzdCAxMjM1IFplaWxlbiB1bmQgNDUgU3BhbHRlbi4KYGBge3J9CnBva2Vtb25fZGF0YSA8LSByZWFkX2NzdigiREhCV19sYWIvUnJycnIvcl9wcm9qZWN0X2RoYncvZGF0YS9wa21fZGF0YWJhc2UuY3N2IikKYGBgCgpBbGxlIEthdGVnb3Jpc2NoZW4gRGF0ZW4gd2VyZGVuIHZvbiAiIiBlaW5nZWxlaXRldCwKZGEgZGllcyB6dXIgV2VpdGVydmVyYXJiZWl0dW5nIHVuZ8O8bnN0aWcgaXN0IHdlcmRlbiB6dWVyc3QgYWxsZSAiIiBlbnRmZXJudC4KYGBge3J9CnBva2Vtb25fZGF0YSA8LSBwb2tlbW9uX2RhdGEgJT4lCiAgbXV0YXRlX2lmKGlzLmNoYXJhY3RlciwgZ3N1YiwgcGF0dGVybiA9ICJcXFwiIiwgcmVwbGFjZW1lbnQgPSAiIikKYGBgCgpEaWUgU3BhbHRlbm5hbWVuIGVudGhhbHRlbiBMZWVyemVpY2hlbiBkaWVzIGlzdCBiZWkgZGVyIFZlcndlbmR1bmcgZGVzIERhdGVuc2F0emVzIGluIFIKdW5nw7xuc3RpZywgd2VzaGFsYiBkaWUgTGVlcnplaWNoZW4gbWl0IFB1bmt0ZW4gZXJzZXR6dCB3ZXJkZW4uCmBgYHtyfQpuYW1lcyhwb2tlbW9uX2RhdGEpIDwtIG1ha2UubmFtZXMobmFtZXMocG9rZW1vbl9kYXRhKSkKYGBgCgpEaWUgU3BhbHRlbiBkaWUgbmljaHQgZsO8ciBkaWUgQW5hbHlzZSBuw7Z0aWcgc2luZCB3ZXJkZW4gZW50ZmVybnQuIERhcyBtYWNodCBkaWUgRGF0ZW4gYmVpbSBEZWJ1Z2dpbmcgw7xiZXJzaWNodGxpY2hlci4KYGBge3J9CnBva2Vtb25fZmlsdGVyZWQgPC0gc2VsZWN0KHBva2Vtb25fZGF0YSwgIC1jb250YWlucygiRVYiKSwgLWNvbnRhaW5zKCJFZ2ciKSwgLWNvbnRhaW5zKCJFeHBlcmllbmNlIiksIC1jb250YWlucygiQWJpbGl0eSIpLCAtY29udGFpbnMoIlJhdGlvIiksIC1jb250YWlucygiSGFwcGluZXNzIiksIC1jb250YWlucygiSGVpZ2h0IiksIC1jb250YWlucygiV2VpZ2h0IiksIC1jb250YWlucygiQ2xhc3NpZmljYXRpb24iKSwgLWNvbnRhaW5zKCJSYXRlIikpCmBgYAoKTWFuY2hlIFBva2Vtb25zIGhhYmVuIGFsdGVybmF0aXZlIEZvcm1lbiBlaW5pZ2UgZGF2b24gc2luZCBha3R1ZWxsIG5pY2h0IHNwaWVsYmFyLCB3aWUgTWVnYXMgb2RlciBHaWdhbnRhbWF4LiBEaWVzZSBGb3JtZW4gc2luZCBUZWlsIHZvbiBiZXNvbmRlcmVuIFNwaWVsbWVjaGFuaWtlbiwgZGllIG51ciBpbiBiZXN0aW1tdGVuIEdlbmVyYXRpb25lbiB2ZXJmw7xnYmFyIHdhcmVuLgpNYW5jaGUgRm9ybWVuIHNpbmQgbmljaHQgc3BpZWxiYXIgb2RlciBhbmRlcmUgc2luZCBxdWFzaSBpZGVudGlzY2ggbWl0IGRlciBzdGFuZGFyZCBGb3JtLiBEaWVzZSBGb3JtZW4gd2VyZGVuIGF1cyBkZW0gRGF0ZW5zYXR6IGVudGZlcm50LiBEaWUgYW5kZXJlbiBGb3JtZW4gd2VyZGVuIGluIGRlciBBbmFseXNlIGFscyBlaWdlbmVzIFBva2Vtb24gYmV0cmFjaHRldCB1bmQgYmxlaWJlbiBpbSBEYXRlbnNhdHogYmVzdGVoZW4uCmBgYHtyfQpwb2tlbW9uX2ZpbHRlcmVkIDwtIGZpbHRlcihwb2tlbW9uX2ZpbHRlcmVkLCAhQWx0ZXJuYXRlLkZvcm0uTmFtZSAlaW4lIGMoIk1lZ2EiLCAiTWVnYSBYIiwgIk1lZ2EgWSIsICJHaWdhbnRhbWF4IiwgIkZlbWFsZSIsICJGYW4iLCAiR2FsYXIgWmVuIiwgIkxvdyBLZXkgR2lnYW50YW1heCIsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIkxvd2tleSIsICJTbm93eSIsICJTdGFydGVyIiwgIlplbiIsICJIZWF0IiwgIldhc2giLCAiUmFpbnkiLCAiRXRlcm5hbWF4IikpCmBgYAoKV2lyIHdvbGxlbiBkaWUgZWluemVsbmVuIEdlbmVyYXRpb25lbiBiZXRyYWNodGVuLiBJbiBkZW0gRGF0ZW5zYXR6IHN0ZWh0IGRpZXNlIEluZm9ybWF0aW9uIG51ciBpbmRpcmVrdCB1bmQgendhciB3ZXJkZW4gZGllICJHYW1lIG9mIE9yaWdpbiIgYXVmIGdlbGlzdGV0LiBBbHNvIGRpZSBTcGllbGUgaW4gZGVuZW4gZGllIFBva2Vtb25zIGRhcyBlcnN0ZSBNYWwgdm9ya2FtZW4uIEVpbmUgR2VuZXJhdGlvbiBiZXN0ZWh0IGF1cyBtZWhyZXJlbiBzcGllbGVuIHVuZCB3aXIgZXJ6ZXVnZW4gZGllIEdlbmVyYXRpb25lbiBTcGFsdGUgaW4gZGVtIHdpciBkaWUgU3BpZWxlIGF1ZiBkaWUgamV3ZWlsaWdlIEdlbmVyYXRpb24gbWFwZW4uCmBgYHtyfQpvcmlnaW5fbWFwcGluZyA8LSBjKCJSZWQiID0gMSwgIkdvbGQiID0gMiwgIkVtZXJhbGQiID0gMywgIlJ1YnkiID0gMywgIkRpYW1vbmQiID0gNCwgIkJsYWNrIiA9IDUsICJCbGFjayAyIiA9IDUsICJYIiA9IDYsICJTdW4iID0gNywgIlVsdHJhIFN1biIgPSA3LCAiUG9rZW1vbiBHTyIgPSA4LCAiU3dvcmQiID0gOCwgIlNjYXJsZXQiID0gOSwgIkxlZ2VuZHM6IEFyY2V1cyIgPSA5KQpwb2tlbW9uX2ZpbHRlcmVkIDwtIG11dGF0ZShwb2tlbW9uX2ZpbHRlcmVkLCBHZW5lcmF0aW9uID0gb3JpZ2luX21hcHBpbmdbbWF0Y2gocG9rZW1vbl9maWx0ZXJlZCQiR2FtZS5zLi5vZi5PcmlnaW4iLCBuYW1lcyhvcmlnaW5fbWFwcGluZykpXSkKYGBgClp1bGV0enQgd2VyZGVuIGbDvHIgZGllIEpld2VpbGlnZW4gR2VuZXJhdGlvbmVuIEZhcmJlbiB6dXIgdmlzdWFsaXNpZXJ1bmcgZ2VzZXR6dC4KYGBge3J9CmdlbmVyYXRpb25fY29sb3VycyA8LSBjKCIjMDAwMDAwIiwgIiNFNjlGMDAiLCAiIzU2QjRFOSIsICIjMDA5RTczIiwgIiNGMEU0NDIiLCAiIzAwNzJCMiIsICIjRDU1RTAwIiwgIiNDQzc5QTciLCAiIzk5OTk5OSIpCmBgYAoKTnVuIGvDtm5uZW4gd2lyIHVucyBlaW5lIMOcYmVyc2ljaHQgw7xiZXIgZGVuIGF1ZmdlcsOkdW10ZW4gRGF0ZW5zYXR6IHZlcnNjaGFmZmVuLgpgYGB7cn0KZ2xpbXBzZShwb2tlbW9uX2ZpbHRlcmVkKQpgYGAKCiMjIEFuYWx5c2UKCgoKWnVuw6RjaHN0IGhhYmVuIHdpciBkaWUgYXVmc3VtbWllcnRlbiBCYXNlc3RhdHMgZGVyIFBva2Vtb25zIMO8YmVyIGRlcmVuIFBva2VkZXggTnVtbWVyIChEaWVzZSBudW1tZXIgaXN0IGluIGRlbiBTcGllbGVuIGVpbiB1bmlxdWUgSUQgZsO8ciBqZWRlcyBQb2tlbW9uKSBhdXNnZWJlbiBsYXNzZW4uIERhcyBzY2h3w6RjaHN0ZSBpc3QgYmxhdSBkYXMgc3TDpHJrc3RlIGlzdCByb3QsIGRpZSBhbmRlcmVuIGVpbkdyYWRpZW50IGRhendpc2NoZW4uIApgYGB7cn0KZ2dwbG90KHBva2Vtb25fZmlsdGVyZWQsIGFlcyh4ID0gUG9rZWRleC5OdW1iZXIsIHkgPSBCYXNlLlN0YXQuVG90YWwsIGNvbG9yID0gQmFzZS5TdGF0LlRvdGFsKSkgKyAKICBnZW9tX3BvaW50KCkgKwogIGxhYnModGl0bGUgPSAiUG9rZW1vbiBCYXNlIFN0YXQgVG90YWxzIiwgeSA9ICJCYXNlIFN0YXQgVG90YWwiKSArCiAgc2NhbGVfeV9jb250aW51b3VzKGxpbWl0cyA9IGMoMTAwLCBtYXgocG9rZW1vbl9maWx0ZXJlZCRCYXNlLlN0YXQuVG90YWwpKSkgKwogIHNjYWxlX2NvbG9yX2dyYWRpZW50KGxvdyA9ICJkYXJrYmx1ZSIsIGhpZ2ggPSAicmVkIikKYGBgCgpEYXJhdXMgemVpZ3Qgc2ljaCwgZGFzcyBkaWUgUHVua3RlIHp3aXNjaGVuIDQ1MC01NTAgdmVyZGljaHRldCBzaW5kLiBBdcOfZXJkZW0gZ2lidCBlcyBiZXN0aW1tdGUgV2VydGUsIGRpZSBow6R1ZmlnZXIgYXVmdHJldGVuIHdpZSA2MDAuIERpZXNlciBXZXJ0IHdpcmQgZWlubWFsIGJpcyBtYXhpbWFsIDIgbWFsIHBybyBHZW5lcmF0aW9uIHZlcmdlYmVuIHVuZCBnZWjDtnJ0IHp1IFBva2Vtb25zIGRpZSBkZW0gU3BpZWxlciBlcnN0IHNww6R0IGltIFNwaWVsIHZlcmbDvGdiYXIgdW5kIHNlbHRlbiBzaW5kLiBEaWUgQ29tbXVuaXR5IG5lbm50IHNpZSBwc2V1ZG8gbGVnZW5kw6RyIGFuIEFubGVobnVuZyBhbiBsZWdlbsOkcmUgUG9rZW1vbnMuCgpMZWdlbmTDpHJlIFBva8OpbW9uIHNpbmQgYmVzb25kZXJzIHN0YXJrIGRlc3dlZ2VuIHdpcmQgYW5nZXNjaGF1dCwgd2llIGRpZXNlIGF1ZiBkaWUgCnVudGVyc2NoaWVkbGljaGVuIEdlbmVyYXRpb25lbiB2ZXJ0ZWlsdCBzaW5kLiBTaWUgYmVzaXR6ZW4gdGVuZGVuemllbGwgZGllIGjDtmNoc3RlbiBCYXN0c3RhdHMgaW0gU3BpZWwuCkRlc2hhbGIgd8OkcmUgZXMgaW50ZXJlc3NhbnQgenUgc2VoZW4sIHdpZSBkYXMgVmVyaMOkaGx0bmlzIHZvbiBsZWdlbmTDpHJlbiB6dSBub3JtYWxlbiBQb2tlbW9ucyBpc3QuIFBzZXVkbyBsZWdlbmTDpHJlIHNpbmQgZWluZSBVbnRlcmthdGVnb3JpZSBkZXIgTGVnZWTDpHJlbiBQb2tlbW9ucy4gTmljaHQgenUgdmVyd2VjaHNlbG4gbWl0IGRlbiBQc2V1ZG8gTGVnZW5kw6RyZSBkaWUgYWxzIG5vcm1hbGVzIFBva2Vtb24gZ2VsdGVuLiBXaXIgd29sbGVuIHVucyBhbnNjaGF1ZW4gd2llIGRpZSBsZWdlbmTDpHJlIFBva2Vtb25zIGF1ZiBkaWUgc3BpZWxlIHZlcnRlaWx0IHNpbmQgdW5kIHdlbGNoZW4gYW50ZWlsIHNpZSBpbiBkZW4gR2VuZXJhdGlvbmVuIGRhcnN0ZWxsZW4uCgpgYGB7cn0KbGVnZW5kYXJ5X2NvdW50cyA8LSBwb2tlbW9uX2ZpbHRlcmVkICU+JQogIGdyb3VwX2J5KEdlbmVyYXRpb24sIExlZ2VuZGFyeS5UeXBlKSAlPiUKICBzdW1tYXJpemUoY291bnQgPSBuKCkpCmBgYAoKIyBDcmVhdGUgYSBzdGFja2VkIGJhciBjaGFydCBzaG93aW5nIHRoZSBzaGFyZSBvZiBlYWNoIExlZ2VuZGFyeS5UeXBlIGluIGVhY2ggR2VuZXJhdGlvbgoKSW0gZm9sZ2VuZGVuIERpYWdyYW0gd2lyZCBkaWUgVmVydGVpbHVuZyBkZXIgTGVnZW5kw6RyZW4gUG9rZW1vbiBhdWYgZGllIGpld2VpbGlnZW4gU3BpZWwgR2VuZXJhdGlvbmVuIHZpc3VhbGlzaWVydC4KYGBge3J9CmdncGxvdChsZWdlbmRhcnlfY291bnRzLCBhZXMoeCA9IEdlbmVyYXRpb24sIHkgPSBjb3VudCwgZmlsbCA9IExlZ2VuZGFyeS5UeXBlKSkgKwogIGdlb21fY29sKCkgKwogIHNjYWxlX2NvbG9yX21hbnVhbCh2YWx1ZXMgPSBnZW5lcmF0aW9uX2NvbG91cnMpCmBgYApFcyBzdGVsbHQgc2ljaCBoZXJhdXMsIGRhc3MgZGllIEFuemFobCB1bmQgQW50ZWlsIGRlciBsZWdlbmTDpHJlbiBQb2tlbW9ucyB6d2FyIGluIGRlciBlcnN0ZW4gR2VuZXJhdGlvbiBhbSBnZXJpbmdzdGVuIHdhciBhYmVyIGRpZSBuZXVlc3RlIEdlbmVyYXRpb24gYmVzaXR6dCBpbSBWZWdsZWljaCB6dSBkZW4gdm9yaGVyaWdlbiB3ZW5pZyBsZWdlbmTDpHJlLiBEYXJhbiBsw6Rzc3Qgc2ljaCBhbHNvIGtlaW4gUG93ZXJjcmVlcCBlcmtlbm5lbi4KCk51biB3ZXJkZW4gZGllIGVpbnplbG5lbiBCYXNpc3dlcnRlIGFscyBCb3hwbG90IHBybyBnZW5lcmF0aW9uIGJldHJhY2h0ZXQuCmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IHBva2Vtb25fZmlsdGVyZWQsIGFlcyh4ID0gZmFjdG9yKEdlbmVyYXRpb24pLCB5ID0gSGVhbHRoLlN0YXQsIGZpbGwgPSBmYWN0b3IoR2VuZXJhdGlvbikpKSArCiAgZ2VvbV9ib3hwbG90KCkgKwogIHNjYWxlX2NvbG9yX21hbnVhbCh2YWx1ZXMgPSBnZW5lcmF0aW9uX2NvbG91cnMpCmBgYAoKQW5hbHlzZSBkZXIgQW5ncmlmZnNzdMOkcmtlbiDDvGJlciBkaWUgR2VuZXJhdGlvbmVuLgoKYGBge3J9CmdncGxvdChkYXRhID0gcG9rZW1vbl9maWx0ZXJlZCwgYWVzKHggPSBmYWN0b3IoR2VuZXJhdGlvbiksIHkgPSBBdHRhY2suU3RhdCwgZmlsbCA9IGZhY3RvcihHZW5lcmF0aW9uKSkpICsKICBnZW9tX2JveHBsb3QoKSArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcyA9IGdlbmVyYXRpb25fY29sb3VycykKYGBgCkFuYWx5c2UgZGVyIFZlcnRlaWRpZ3Vuc3dlcnRlIMO8YmVyIGRpZSBHZW5lcmF0aW9uZW4uCgpgYGB7cn0KZ2dwbG90KGRhdGEgPSBwb2tlbW9uX2ZpbHRlcmVkLCBhZXMoeCA9IGZhY3RvcihHZW5lcmF0aW9uKSwgeSA9IERlZmVuc2UuU3RhdCwgZmlsbCA9IGZhY3RvcihHZW5lcmF0aW9uKSkpICsKICBnZW9tX2JveHBsb3QoKSArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcyA9IGdlbmVyYXRpb25fY29sb3VycykKYGBgCgpBbmFseXNlIGRlciBTcGV6aWFsYXR0YWNrZW4tU3TDpHJrZW4gw7xiZXIgZGllIEdlbmVyYXRpb25lbi4KCmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IHBva2Vtb25fZmlsdGVyZWQsIGFlcyh4ID0gZmFjdG9yKEdlbmVyYXRpb24pLCB5ID0gU3BlY2lhbC5BdHRhY2suU3RhdCwgZmlsbCA9IGZhY3RvcihHZW5lcmF0aW9uKSkpICsKICBnZW9tX2JveHBsb3QoKSArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcyA9IGdlbmVyYXRpb25fY29sb3VycykKYGBgCgpBbmFseXNlIGRlciBTcGV6aWFsdmVydGVpZGlndW5nZW4gw7xiZXIgZGllIEdlbmVyYXRpb25lbi4KCmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IHBva2Vtb25fZmlsdGVyZWQsIGFlcyh4ID0gZmFjdG9yKEdlbmVyYXRpb24pLCB5ID0gU3BlY2lhbC5EZWZlbnNlLlN0YXQsIGZpbGwgPSBmYWN0b3IoR2VuZXJhdGlvbikpKSArCiAgZ2VvbV9ib3hwbG90KCkgKwogIHNjYWxlX2NvbG9yX21hbnVhbCh2YWx1ZXMgPSBnZW5lcmF0aW9uX2NvbG91cnMpCmBgYAoKQmVpIGRpZXNlciBBbmFseXNlIGbDpGxsdCBhdWYsIGRhc3MgZGllIEdlbmVyYXRpb25lbiBtZWlzdCBzZWhyIGVuZyBzb3dvaGwgYmVpbSBNZWRpYW4gYWxzIGF1Y2ggYmVpIGRlbiBXSGlza2VybiBiZWllaW5hbmRlciBsaWVnZW4uIEltICBOb3JtYWxsZmFsbCBpc3QgZGllIHphaGwgZGVyIGF1cyBSZWlzZXIgbmFjaCBvYmVuIHVuZCB1bnRlbiBuaWNodCBhdWZmw6RsbGlnLgoKRGVubm9jaCB3aXJrZW4gZGllIG5ldWVuIEdlbmVyYXRpb25lbiBtZWlzdCBldHdhcyB3ZWl0ZXIgb2Jlbi4gCgpEaWVzZXIgRWluZHJ1Y2sgdmVyc3TDpHJrdCBzaWNoLCB3ZW5uIHdpciBkaWUgQmFzaXN3ZXJ0ZSBhdWZzdW1taWVydCBiZXRyYWNodGVuLiBHZXJhZGUgd2VubiBtYW4gZGVuIE1lZGlhbiBiZXRyYWNodGV0IHdpcmQgZGllcyBrbGFyLgpgYGB7cn0KZ2dwbG90KGRhdGEgPSBwb2tlbW9uX2ZpbHRlcmVkLCBhZXMoeCA9IGZhY3RvcihHZW5lcmF0aW9uKSwgeSA9IEJhc2UuU3RhdC5Ub3RhbCwgZmlsbCA9IGZhY3RvcihHZW5lcmF0aW9uKSkpICsKICBnZW9tX2JveHBsb3QoKSArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcyA9IGdlbmVyYXRpb25fY29sb3VycykKYGBgCgpOdW4gd2VyZGVuIHdpciBkaWUgTGVnZW5kw6RyZW4gcG9rZW1vbnMgZW50ZmVybnQgd2VpbCBkYXMgdmllbGxlaWNodCBlaW4gYW5kZXJlbiBCbGljayBhdWYgZGllIFNhY2hlIGVybcO2Z2xpY2h0LiBEYWbDvHIgd2VyZGVuIGRpZSBsZWdlbmTDpHJlbiByYXVzZ2VmaWx0ZXJ0IHVuZCBlaW4gQm95cGxvdCBlcnN0ZWxsdC4KCmBgYHtyfQpwb2tlbW9uX2xlZ19maWx0ZXJlZCA8LSBmaWx0ZXIocG9rZW1vbl9maWx0ZXJlZCwgIUxlZ2VuZGFyeS5UeXBlICVpbiUgYygiTGVnZW5kYXJ5IiwgIk15dGhpY2FsIiwiU3ViLUxlZ2VuZGFyeSIpKQpnZ3Bsb3QoZGF0YSA9IHBva2Vtb25fbGVnX2ZpbHRlcmVkLCBhZXMoeCA9IGZhY3RvcihHZW5lcmF0aW9uKSwgeSA9IEJhc2UuU3RhdC5Ub3RhbCwgZmlsbCA9IGZhY3RvcihHZW5lcmF0aW9uKSkpICsKICBnZW9tX2JveHBsb3QoKSArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcyA9IGdlbmVyYXRpb25fY29sb3VycykKYGBgCkpldHp0IGlzdCBzZWhyIGd1dCBhbSBNZWRpYW4genUgc2VoZW4sIGRhc3MgZGllIDR0ZSBHZW5lcmF0aW9uIHJlY2h0IHN0YXJrIGlzdCB1bmQgZWluZW4gSG9jaHB1bmt0IGluIGRlciBlcnN0ZW4gSMOkbGZ0ZSBkYXJzdGVsbHQuIEF1w59lcmRlbSBpc3QgZGVyIE1lZGlhbiBzZWl0IGRlciA1dGVuIEdlbmVyYXRpb24ga29udGludWllcmxpY2ggZ2VzdGllZ2VuIHVuZCBoYXQgbWl0dGxlcndlaWxlIGRlbiBob2NocHVua3QgZGVyIDR0ZW4gR2VuZXJhdGlvbiDDvGJlcnNjaHJpdHRlbi4gRGllIGFrdHVlbGxzdGUgZ2VucmF0aW9uIGhhbmQgenVkZW0gZGllIGdyw7bDn3RlbiB3aGlza2VycyBuYWNoIG9iZW4uIAoKSW0gZm9sZ2VuZGVuIHd1cmRlIGRlciBtZWRpYW4gbm9jaG1hbCDDvGJlciBkaWUgZWluemVsbmVuIEdlbmVyYXRpb25lbiBhbHMgQm94cGxvdCBiZXRyYWNodGV0IHVtIGRlbiB2ZXJsYXVmIGRlcyBtZWRpYW4genUgdmVyZGV1dGxpY2hlbi4KYGBge3J9CmdncGxvdChkYXRhID0gcG9rZW1vbl9sZWdfZmlsdGVyZWQsIGFlcyh4ID0gZmFjdG9yKEdlbmVyYXRpb24pLCB5ID0gQmFzZS5TdGF0LlRvdGFsLCBmaWxsID0gZmFjdG9yKEdlbmVyYXRpb24pKSkgKwogIHN0YXRfc3VtbWFyeShmdW4ueSA9ICJtZWRpYW4iLCBnZW9tID0gImJhciIpICsKICBzY2FsZV9maWxsX21hbnVhbCh2YWx1ZXMgPSBnZW5lcmF0aW9uX2NvbG91cnMpCmBgYAoKIyMgRmF6aXQKClVuc2VyZSBBbmFseXNlIHplaWd0IGtsYXIsIGRhc3MgZGllIG5vcm1hbGVuIFBva2Vtb25zIHNlaXQgZGVyIDV0ZW4gR2VuZXJhdGlvbiBpbW1lciBow7ZoZXJlIEJhc2lzd2VydGUgYmVzaXR6ZW4uIEluIGRpZXNlbSBIaW5ibGljayBpc3QgZGllIGFrdHVlbGxzdGUgUG9rZW1vbiBHZW5lcmF0aW9uIDkgdGF0c8OkY2hsaWNoIGF1Y2ggZGllIFN0w6Rya3N0ZSBHZW5lcmF0aW9uLiBEaWUgQW5hbHlzZSBiZWtyw6RmdGlndCBhbHNvIGRlbiBWb3J3dXJmIGRlcyAiUG93ZXJjZWVwcyIgaW4gUG9rZW1vbi4KCkFscyBrbGFyZSBCZXN0w6R0aWd1bmcgZsO8ciBkZW4gUG93ZXJjcmVlcCBpc3QgZGllIEFuYWx5c2UgYWJlciBhdWNoIG5pY2h0LCB3ZWlsIGF1Y2ggYW5kZXJlIEZha3RvcmVuLCB3aWUgRsOkaGlna2VpdGVuIG9kZXIgQXR0YWNrZW4sIGRpZSBTdMOkcmtlIGVpbmVzIFBva2Vtb25zIGJlaW5mbHVzc2VuLiBEaWVzZSBGYWt0b3JlbiBlaW56dWJlemllaGVuIGlzdCBtaXQgdW5zZXJlbSBEYXRlbnNhdHogbGVpZGVyIG5pY2h0IG3DtmdsaWNoIHVuZCBhdcOfZXJkZW0gc2VociBrb21wbGV4LiBVbnNlcmUgQW5hbHlzZSBzYWd0IGxlZGlnbGljaCBhdXMsIGRhc3MgZGllIEJhc2lzd2VydGUgZWluIEluZGl6IGbDvHIgZGVuIFZvcnd1cmYgZGVzICJQb3dlcmNyZWVwcyIgc2luZC4KCgoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBBbmFseXNlIGVpbmVzIGhpc3RvcmlzY2hlbiBQb2vDqShycnIpbW9uIERhdGVuc2F0emVzCnZvbiBMYXJycnMgQnJycm9jaGUgdW5kIFBldGVycnIgU2NoZXUgKGRhcyBtaXQgZGVuIHIncyBsYXNzZW4gd2lyIHNvKQoKIyMgRWlubGVpdHVuZyAKClBva8OpbW9uIGlzdCBlaW4gU3BpZWwgZGVyIGphcGFuaXNjaGVuIFNwaWVsZWVudHdpY2tsZXIgRmlybWEgIkdhbWUgRnJlYWsiIAppbSBTcGllbCBnZWh0IGVzIGRhcnVtLCBXZXNlbiBuYW1lbnMgUG9rw6ltb24genUgZmFuZ2VuIHVuZCB6dSBzYW1tZWxuLgpNaXQgZGVuIGdlc2FtbWVsdGVuIFdlc2VuIGthbm4gbWFuIGRhbm4gZ2VnZW4gYW5kZXJlIFNwaWVsZXIgdW5kIHdpbGRlIFBva8OpbW9uIGvDpG1wZmVuLgoKRXMgZ2lidCBtaXR0bGVyd2VpbGUgw7xiZXIgdGF1c2VuZCBQb2vDqW1vbnMsIGRpZSBhbGxlIHVudGVyc2NoaWVkbGljaCBzdGFyayBzaW5kLiBPYiBlaW4gUG9rw6ltb24gc3RhcmsgaXN0CmzDpHNzdCBzaWNoIGFuIG1laHJlcmVuIEZha3RvcmVuIGVya2VubmVuLiBFaW5lciBkaWVzZXIgRmFrdG9yZW4gc2luZCBkaWUgc29nZW5hbm50ZW4gQmFzaXN3ZXJ0ZS4gUG9rw6ltb25zIGJlc2l0emVuIDYgQmFzaXMgV2VydGU6IEFuZ3JpZmYvU3BlemlhbCBBbmdyaWZmIHNhZ2VuIHdpZSBzdGFyayBkaWUgKFNwZXppYWwtKSBBdHRhY2tlbiBkZXIgUG9rw6ltb25zIHNpbmQsIFZlcnRlaWRpZ3VuZy9TcGV6aWFsIFZlcnRlaWRndW5nIGtvbWJpbmllcnQgbWl0IGRlbiBMZWJlbnNwdW5rdGVuIHNhZ2VuIGF1cywgd2llIGd1dCBlaW4gUG9rw6ltb24gKHNwZXppYWwtKSBlaW5zdGVja2VuIGthbm4sIGRpZSBHZXNjaHdpbmRpZ2tlaXQgc2FndCBhdXMsIHdpZSBzY2huZWxsIGVpbiBQb2vDqW1vbiBhbmdyZWlmdC4gRGFzIFNwaWVsIFBva8OpbW9uIGlzdCBSdW5kZW4gYmFzaWVydCwgc2NobmVsbGUgUG9rw6ltb25zIGdyZWlmZW4gZnLDvGhlciBpbiBkZXIgUnVuZGUgYW4gYWxzIGxhbmdzYW1lcmUuCgpFbmRlIDIwMjIgd3VyZGUgZGllIG5ldW50ZSBQb2vDqW1vbmdlbmVyYXRpb24gdmVyw7ZmZmVudGxpY2h0IHVuZCB2aWVsZSBTcGllbGVyIHNhZ2VuLCBlcyBow6R0dGUgZWluICJQb3dlcmNyZWVwIiBzdGF0dGdlZnVuZGVuLiBEYXMgYmVkZXV0ZXQsIGRhc3MgZGllIFNwaWVsZXIgZGllIG5ldWVuIFBva8OpbW9ucyBzdMOkcmtlciBmaW5kZW4gYWxzIGRpZSBkZXIgYWx0ZW4gR2VuZXJhdGlvbmVuLiBEZXIgVm9yd3VyZiBkZXMgUG93ZXJjcmVlcHMgaXN0IG5pY2h0IG5ldSB1bmQgZmluZGV0IHNlaXQgZWluaWdlbiBQb2vDqW1vbmdlbmVyYXRpb25lbiBtaXQgamVkZXIgbmV1ZW4gR2VuZXJhdGlvbiBzdGF0dC4KCkluIGRpZXNlciBEYXRlbmFuYWx5c2UgZ2VodCBlcyBkYXJ1bSBoZXJhdXN6dWZpbmRlbiwgb2IgZGVyIFZvcnd1cmYgZGVzIFBvd2VyY3JlZXBzIGFuaGFuZCBkZXIgQmFzaXN3ZXJ0ZSBuYWNoenV2b2xsemllaGVuIGlzdCwgb2RlciBvYiBhbmRlcmUgRmFrdG9yZW4gd2llIEF0dGFja2VuIHVuZCBGw6RoaWdrZWl0ZW4gaGllcmbDvHIgYXVzc2NobGFnZ2ViZW5kIHNpbmQuCgpadXIgQW5hbHlzZSBkaWVudCBlaW4gRGF0ZW5zYXR6IMO8YmVyIGFsbGUgUG9rw6ltb25zIGF1cyBhbGxlbiB2ZXJzY2hpZWRlbmVuIFNwaWVsZW4gw7xiZXIgZGllIEphaHJlLgoKIyMgTGFkZW4gdW5kIGJlcmVpbmlnZW4gZGVyIERhdGVuCgpadWVyc3Qgd2VyZGVuIEFiaMOkbmdpZ2tlaXRlbiBnZWxhZGVuLgpgYGB7cn0KbGlicmFyeShyZWFkcikKbGlicmFyeShnZ3Bsb3QyKQpsaWJyYXJ5KG1hZ3JpdHRyKQpsaWJyYXJ5KGRwbHlyKQpgYGAKCkRpZSBEYXRlbmJhbmsgbGllZ3QgaW0gQ1NWLUZvcm1hdCB2b3IgdW5kIGthbm4gYWxzIHNvbGNoZSBkaXJla3QgZ2VsYWRlbiB3ZXJkZW4uClNpZSB1bWZhc3N0IDEyMzUgWmVpbGVuIHVuZCA0NSBTcGFsdGVuLgpgYGB7cn0KUG9rw6ltb25fZGF0YSA8LSByZWFkX2Nzdigifi9yZXBvcy9yX3Byb2plY3RfZGhidy9kYXRhL3BrbV9kYXRhYmFzZS5jc3YiKQpgYGAKCkFsbGUga2F0ZWdvcmlzY2hlbiBEYXRlbiB3ZXJkZW4gdm9uICIiIGVpbmdlbGVpdGV0LApkYSBkaWVzIHp1ciBXZWl0ZXJ2ZXJhcmJlaXR1bmcgdW5nw7xuc3RpZyBpc3QsIHdlcmRlbiB6dWVyc3QgYWxsZSAiIiBlbnRmZXJudC4KYGBge3J9ClBva8OpbW9uX2RhdGEgPC0gUG9rw6ltb25fZGF0YSAlPiUKICBtdXRhdGVfaWYoaXMuY2hhcmFjdGVyLCBnc3ViLCBwYXR0ZXJuID0gIlxcXCIiLCByZXBsYWNlbWVudCA9ICIiKQpgYGAKCkRpZSBTcGFsdGVubmFtZW4gZW50aGFsdGVuIExlZXJ6ZWljaGVuLiBEaWVzIGlzdCBiZWkgZGVyIFZlcndlbmR1bmcgZGVzIERhdGVuc2F0emVzIGluIFIKdW5nw7xuc3RpZywgd2VzaGFsYiBkaWUgTGVlcnplaWNoZW4gbWl0IFB1bmt0ZW4gZXJzZXR6dCB3ZXJkZW4uCmBgYHtyfQpuYW1lcyhQb2vDqW1vbl9kYXRhKSA8LSBtYWtlLm5hbWVzKG5hbWVzKFBva8OpbW9uX2RhdGEpKQpgYGAKCkRpZSBTcGFsdGVuLCBkaWUgbmljaHQgZsO8ciBkaWUgQW5hbHlzZSBuw7Z0aWcgc2luZCB3ZXJkZW4gZW50ZmVybnQuIERhcyBtYWNodCBkaWUgRGF0ZW4gYmVpbSBEZWJ1Z2dpbmcgw7xiZXJzaWNodGxpY2hlci4KYGBge3J9ClBva8OpbW9uX2ZpbHRlcmVkIDwtIHNlbGVjdChQb2vDqW1vbl9kYXRhLCAgLWNvbnRhaW5zKCJFViIpLCAtY29udGFpbnMoIkVnZyIpLCAtY29udGFpbnMoIkV4cGVyaWVuY2UiKSwgLWNvbnRhaW5zKCJBYmlsaXR5IiksIC1jb250YWlucygiUmF0aW8iKSwgLWNvbnRhaW5zKCJIYXBwaW5lc3MiKSwgLWNvbnRhaW5zKCJIZWlnaHQiKSwgLWNvbnRhaW5zKCJXZWlnaHQiKSwgLWNvbnRhaW5zKCJDbGFzc2lmaWNhdGlvbiIpLCAtY29udGFpbnMoIlJhdGUiKSkKYGBgCgpNYW5jaGUgUG9rw6ltb25zIGhhYmVuIGFsdGVybmF0aXZlIEZvcm1lbi4gRWluaWdlIGRhdm9uIHNpbmQgYWt0dWVsbCBuaWNodCBzcGllbGJhciwgd2llIE1lZ2FzIG9kZXIgR2lnYW50YW1heC4gRGllc2UgRm9ybWVuIHNpbmQgVGVpbCB2b24gYmVzb25kZXJlbiBTcGllbG1lY2hhbmlrZW4sIGRpZSBudXIgaW4gYmVzdGltbXRlbiBHZW5lcmF0aW9uZW4gdmVyZsO8Z2JhciB3YXJlbi4KTWFuY2hlIEZvcm1lbiBzaW5kIG5pY2h0IHNwaWVsYmFyIG9kZXIgYW5kZXJlIHNpbmQgcXVhc2kgaWRlbnRpc2NoIG1pdCBkZXIgU3RhbmRhcmRmb3JtLiBEaWVzZSBGb3JtZW4gd2VyZGVuIGF1cyBkZW0gRGF0ZW5zYXR6IGVudGZlcm50LiBEaWUgYW5kZXJlbiBGb3JtZW4gd2VyZGVuIGluIGRlciBBbmFseXNlIGFscyBlaWdlbmVzIFBva8OpbW9uIGJldHJhY2h0ZXQgdW5kIGJsZWliZW4gaW0gRGF0ZW5zYXR6IGJlc3RlaGVuLgpgYGB7cn0KUG9rw6ltb25fZmlsdGVyZWQgPC0gZmlsdGVyKFBva8OpbW9uX2ZpbHRlcmVkLCAhQWx0ZXJuYXRlLkZvcm0uTmFtZSAlaW4lIGMoIk1lZ2EiLCAiTWVnYSBYIiwgIk1lZ2EgWSIsICJHaWdhbnRhbWF4IiwgIkZlbWFsZSIsICJGYW4iLCAiR2FsYXIgWmVuIiwgIkxvdyBLZXkgR2lnYW50YW1heCIsIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIkxvd2tleSIsICJTbm93eSIsICJTdGFydGVyIiwgIlplbiIsICJIZWF0IiwgIldhc2giLCAiUmFpbnkiLCAiRXRlcm5hbWF4IikpCmBgYAoKV2lyIHdvbGxlbiBkaWUgZWluemVsbmVuIEdlbmVyYXRpb25lbiBiZXRyYWNodGVuLiBJbiBkZW0gRGF0ZW5zYXR6IHN0ZWh0IGRpZXNlIEluZm9ybWF0aW9uIG51ciBpbmRpcmVrdCB1bmQgendhciB3ZXJkZW4gZGllICJHYW1lIG9mIE9yaWdpbiIgYXVmZ2VsaXN0ZXQuIEFsc28gZGllIFNwaWVsZSwgaW4gZGVuZW4gZGllIFBva8OpbW9ucyBkYXMgZXJzdGUgTWFsIHZvcmthbWVuLiBFaW5lIEdlbmVyYXRpb24gYmVzdGVodCBhdXMgbWVocmVyZW4gU3BpZWxlbiB1bmQgd2lyIGVyemV1Z2VuIGRpZSBHZW5lcmF0aW9uZW4tU3BhbHRlLCBpbiBkZW0gd2lyIGRpZSBTcGllbGUgYXVmIGRpZSBqZXdlaWxpZ2UgR2VuZXJhdGlvbiBtYXBwZW4uCmBgYHtyfQpvcmlnaW5fbWFwcGluZyA8LSBjKCJSZWQiID0gMSwgIkdvbGQiID0gMiwgIkVtZXJhbGQiID0gMywgIlJ1YnkiID0gMywgIkRpYW1vbmQiID0gNCwgIkJsYWNrIiA9IDUsICJCbGFjayAyIiA9IDUsICJYIiA9IDYsICJTdW4iID0gNywgIlVsdHJhIFN1biIgPSA3LCAiUG9rw6ltb24gR08iID0gOCwgIlN3b3JkIiA9IDgsICJTY2FybGV0IiA9IDksICJMZWdlbmRzOiBBcmNldXMiID0gOSkKUG9rw6ltb25fZmlsdGVyZWQgPC0gbXV0YXRlKFBva8OpbW9uX2ZpbHRlcmVkLCBHZW5lcmF0aW9uID0gb3JpZ2luX21hcHBpbmdbbWF0Y2goUG9rw6ltb25fZmlsdGVyZWQkIkdhbWUucy4ub2YuT3JpZ2luIiwgbmFtZXMob3JpZ2luX21hcHBpbmcpKV0pCmBgYApadWxldHp0IHdlcmRlbiBmw7xyIGRpZSBqZXdlaWxpZ2VuIEdlbmVyYXRpb25lbiBGYXJiZW4genVyIFZpc3VhbGlzaWVydW5nIGdlc2V0enQuCmBgYHtyfQpnZW5lcmF0aW9uX2NvbG91cnMgPC0gYygiIzAwMDAwMCIsICIjRTY5RjAwIiwgIiM1NkI0RTkiLCAiIzAwOUU3MyIsICIjRjBFNDQyIiwgIiMwMDcyQjIiLCAiI0Q1NUUwMCIsICIjQ0M3OUE3IiwgIiM5OTk5OTkiKQpgYGAKCk51biBrw7ZubmVuIHdpciB1bnMgZWluZSDDnGJlcnNpY2h0IMO8YmVyIGRlbiBhdWZnZXLDpHVtdGVuIERhdGVuc2F0eiB2ZXJzY2hhZmZlbi4KYGBge3J9CmdsaW1wc2UoUG9rw6ltb25fZmlsdGVyZWQpCmBgYAoKIyMgQW5hbHlzZQoKCgpadW7DpGNoc3QgaGFiZW4gd2lyIGRpZSBhdWZzdW1taWVydGVuIEJhc2VzdGF0cyBkZXIgUG9rw6ltb25zIMO8YmVyIGRlcmVuIFBva2VkZXggTnVtbWVyIChEaWVzZSBOdW1tZXIgaXN0IGluIGRlbiBTcGllbGVuIGVpbmUgdW5pcXVlIElEIGbDvHIgamVkZXMgUG9rw6ltb24pIGF1c2dlYmVuIGxhc3Nlbi4gRGFzIFNjaHfDpGNoc3RlIGlzdCBibGF1IGRhcyBTdMOkcmtzdGUgaXN0IHJvdCwgZGllIGFuZGVyZW4gZWluIEdyYWRpZW50IGRhendpc2NoZW4uIApgYGB7cn0KZ2dwbG90KFBva8OpbW9uX2ZpbHRlcmVkLCBhZXMoeCA9IFBva2VkZXguTnVtYmVyLCB5ID0gQmFzZS5TdGF0LlRvdGFsLCBjb2xvciA9IEJhc2UuU3RhdC5Ub3RhbCkpICsgCiAgZ2VvbV9wb2ludCgpICsKICBsYWJzKHRpdGxlID0gIlBva8OpbW9uIEJhc2UgU3RhdCBUb3RhbHMiLCB5ID0gIkJhc2UgU3RhdCBUb3RhbCIpICsKICBzY2FsZV95X2NvbnRpbnVvdXMobGltaXRzID0gYygxMDAsIG1heChQb2vDqW1vbl9maWx0ZXJlZCRCYXNlLlN0YXQuVG90YWwpKSkgKwogIHNjYWxlX2NvbG9yX2dyYWRpZW50KGxvdyA9ICJkYXJrYmx1ZSIsIGhpZ2ggPSAicmVkIikKYGBgCgpEYXJhdXMgemVpZ3Qgc2ljaCwgZGFzcyBkaWUgUHVua3RlIHp3aXNjaGVuIDQ1MC01NTAgdmVyZGljaHRldCBzaW5kLiBBdcOfZXJkZW0gZ2lidCBlcyBiZXN0aW1tdGUgV2VydGUsIGRpZSBow6R1ZmlnZXIgYXVmdHJldGVuIHdpZSA2MDAuIERpZXNlciBXZXJ0IHdpcmQgZWlubWFsIGJpcyBtYXhpbWFsIHp3ZWltYWwgcHJvIEdlbmVyYXRpb24gdmVyZ2ViZW4gdW5kIGdlaMO2cnQgenUgUG9rw6ltb25zLCBkaWUgZGVtIFNwaWVsZXIgZXJzdCBzcMOkdCBpbSBTcGllbCB2ZXJmw7xnYmFyIHVuZCBzZWx0ZW4gc2luZC4gRGllIENvbW11bml0eSBuZW5udCBzaWUgcHNldWRvbGVnZW5kw6RyIGluIEFubGVobnVuZyBhbiBsZWdlbsOkcmUgUG9rw6ltb25zLgoKTGVnZW5kw6RyZSBQb2vDqW1vbiBzaW5kIGJlc29uZGVycyBzdGFyaywgZGVzd2VnZW4gd2lyZCBhbmdlc2NoYXV0LCB3aWUgZGllc2UgYXVmIGRpZSAKdW50ZXJzY2hpZWRsaWNoZW4gR2VuZXJhdGlvbmVuIHZlcnRlaWx0IHNpbmQuIFNpZSBiZXNpdHplbiB0ZW5kZW56aWVsbCBkaWUgaMO2Y2hzdGVuIEJhc2VzdGF0cyBpbSBTcGllbC4KRGVzaGFsYiB3w6RyZSBlcyBpbnRlcmVzc2FudCB6dSBzZWhlbiwgd2llIGRhcyBWZXJow6RsdG5pcyB2b24gbGVnZW5kw6RyZW4genUgbm9ybWFsZW4gUG9rw6ltb25zIGlzdC4gUHNldWRvbGVnZW5kw6RyZSBzaW5kIGVpbmUgVW50ZXJrYXRlZ29yaWUgZGVyIGxlZ2Vkw6RyZW4gUG9rw6ltb25zLiBOaWNodCB6dSB2ZXJ3ZWNoc2VsbiBtaXQgZGVuIFBzZXVkb2xlZ2VuZMOkcmVuLCBkaWUgYWxzIG5vcm1hbGVzIFBva8OpbW9uIGdlbHRlbi4gV2lyIHdvbGxlbiB1bnMsIGFuc2NoYXVlbiB3aWUgZGllIGxlZ2VuZMOkcmUgUG9rw6ltb25zIGF1ZiBkaWUgU3BpZWxlIHZlcnRlaWx0IHNpbmQgdW5kIHdlbGNoZW4gQW50ZWlsIHNpZSBpbiBkZW4gR2VuZXJhdGlvbmVuIGRhcnN0ZWxsZW4uCgpgYGB7cn0KbGVnZW5kYXJ5X2NvdW50cyA8LSBQb2vDqW1vbl9maWx0ZXJlZCAlPiUKICBncm91cF9ieShHZW5lcmF0aW9uLCBMZWdlbmRhcnkuVHlwZSkgJT4lCiAgc3VtbWFyaXplKGNvdW50ID0gbigpKQpgYGAKSW0gZm9sZ2VuZGVuIERpYWdyYW1tIHdpcmQgZGllIFZlcnRlaWx1bmcgZGVyIGxlZ2VuZMOkcmVuIFBva8OpbW9uIGF1ZiBkaWUgamV3ZWlsaWdlbiBTcGllbGdlbmVyYXRpb25lbiB2aXN1YWxpc2llcnQuCmBgYHtyfQpnZ3Bsb3QobGVnZW5kYXJ5X2NvdW50cywgYWVzKHggPSBHZW5lcmF0aW9uLCB5ID0gY291bnQsIGZpbGwgPSBMZWdlbmRhcnkuVHlwZSkpICsKICBnZW9tX2NvbCgpICsKICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gZ2VuZXJhdGlvbl9jb2xvdXJzKQpgYGAKRXMgc3RlbGx0IHNpY2ggaGVyYXVzLCBkYXNzIGRpZSBBbnphaGwgdW5kIEFudGVpbCBkZXIgbGVnZW5kw6RyZW4gUG9rw6ltb25zIHp3YXIgaW4gZGVyIGVyc3RlbiBHZW5lcmF0aW9uIGFtIGdlcmluZ3N0ZW4gd2FyIGFiZXIgZGllIG5ldWVzdGUgR2VuZXJhdGlvbiBiZXNpdHp0IGltIFZlZ2xlaWNoIHp1IGRlbiB2b3JoZXJpZ2VuIHdlbmlnIGxlZ2VuZMOkcmUuIERhcmFuIGzDpHNzdCBzaWNoIGFsc28ga2VpbiBQb3dlcmNyZWVwIGVya2VubmVuLgoKTnVuIHdlcmRlbiBkaWUgZWluemVsbmVuIEJhc2lzd2VydGUgYWxzIEJveHBsb3QgcHJvIEdlbmVyYXRpb24gYmV0cmFjaHRldC4KYGBge3J9CmdncGxvdChkYXRhID0gUG9rw6ltb25fZmlsdGVyZWQsIGFlcyh4ID0gZmFjdG9yKEdlbmVyYXRpb24pLCB5ID0gSGVhbHRoLlN0YXQsIGZpbGwgPSBmYWN0b3IoR2VuZXJhdGlvbikpKSArCiAgZ2VvbV9ib3hwbG90KCkgKwogIHNjYWxlX2NvbG9yX21hbnVhbCh2YWx1ZXMgPSBnZW5lcmF0aW9uX2NvbG91cnMpCmBgYAoKQW5hbHlzZSBkZXIgQW5ncmlmZnNzdMOkcmtlbiDDvGJlciBkaWUgR2VuZXJhdGlvbmVuLgoKYGBge3J9CmdncGxvdChkYXRhID0gUG9rw6ltb25fZmlsdGVyZWQsIGFlcyh4ID0gZmFjdG9yKEdlbmVyYXRpb24pLCB5ID0gQXR0YWNrLlN0YXQsIGZpbGwgPSBmYWN0b3IoR2VuZXJhdGlvbikpKSArCiAgZ2VvbV9ib3hwbG90KCkgKwogIHNjYWxlX2NvbG9yX21hbnVhbCh2YWx1ZXMgPSBnZW5lcmF0aW9uX2NvbG91cnMpCmBgYApBbmFseXNlIGRlciBWZXJ0ZWlkaWd1bmdzd2VydGUgw7xiZXIgZGllIEdlbmVyYXRpb25lbi4KCmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IFBva8OpbW9uX2ZpbHRlcmVkLCBhZXMoeCA9IGZhY3RvcihHZW5lcmF0aW9uKSwgeSA9IERlZmVuc2UuU3RhdCwgZmlsbCA9IGZhY3RvcihHZW5lcmF0aW9uKSkpICsKICBnZW9tX2JveHBsb3QoKSArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcyA9IGdlbmVyYXRpb25fY29sb3VycykKYGBgCgpBbmFseXNlIGRlciBTcGV6aWFsYXR0YWNrZW4tU3TDpHJrZW4gw7xiZXIgZGllIEdlbmVyYXRpb25lbi4KCmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IFBva8OpbW9uX2ZpbHRlcmVkLCBhZXMoeCA9IGZhY3RvcihHZW5lcmF0aW9uKSwgeSA9IFNwZWNpYWwuQXR0YWNrLlN0YXQsIGZpbGwgPSBmYWN0b3IoR2VuZXJhdGlvbikpKSArCiAgZ2VvbV9ib3hwbG90KCkgKwogIHNjYWxlX2NvbG9yX21hbnVhbCh2YWx1ZXMgPSBnZW5lcmF0aW9uX2NvbG91cnMpCmBgYAoKQW5hbHlzZSBkZXIgU3BlemlhbHZlcnRlaWRpZ3VuZ2VuIMO8YmVyIGRpZSBHZW5lcmF0aW9uZW4uCgpgYGB7cn0KZ2dwbG90KGRhdGEgPSBQb2vDqW1vbl9maWx0ZXJlZCwgYWVzKHggPSBmYWN0b3IoR2VuZXJhdGlvbiksIHkgPSBTcGVjaWFsLkRlZmVuc2UuU3RhdCwgZmlsbCA9IGZhY3RvcihHZW5lcmF0aW9uKSkpICsKICBnZW9tX2JveHBsb3QoKSArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcyA9IGdlbmVyYXRpb25fY29sb3VycykKYGBgCgpCZWkgZGllc2VyIEFuYWx5c2UgZsOkbGx0IGF1ZiwgZGFzcyBkaWUgR2VuZXJhdGlvbmVuIG1laXN0IHNlaHIgZW5nIC0gc293b2hsIGJlaW0gTWVkaWFuIGFscyBhdWNoIGJlaSBkZW4gV2hpc2tlcm4gLSBiZWllaW5hbmRlciBsaWVnZW4uIEltIE5vcm1hbGxmYWxsIGlzdCBkaWUgWmFobCBkZXIgQXVzcmVpc2VyIG5hY2ggb2JlbiB1bmQgdW50ZW4gbmljaHQgYXVmZsOkbGxpZy4KCkRlbm5vY2ggd2lya2VuIGRpZSBuZXVlbiBHZW5lcmF0aW9uZW4gbWVpc3QgZXR3YXMgd2VpdGVyIG9iZW4uIAoKRGllc2VyIEVpbmRydWNrIHZlcnN0w6Rya3Qgc2ljaCwgd2VubiB3aXIgZGllIEJhc2lzd2VydGUgYXVmc3VtbWllcnQgYmV0cmFjaHRlbi4gR2VyYWRlIHdlbm4gbWFuIGRlbiBNZWRpYW4gYmV0cmFjaHRldCB3aXJkIGRpZXMga2xhci4KYGBge3J9CmdncGxvdChkYXRhID0gUG9rw6ltb25fZmlsdGVyZWQsIGFlcyh4ID0gZmFjdG9yKEdlbmVyYXRpb24pLCB5ID0gQmFzZS5TdGF0LlRvdGFsLCBmaWxsID0gZmFjdG9yKEdlbmVyYXRpb24pKSkgKwogIGdlb21fYm94cGxvdCgpICsKICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gZ2VuZXJhdGlvbl9jb2xvdXJzKQpgYGAKCk51biB3ZXJkZW4gd2lyIGRpZSBsZWdlbmTDpHJlbiBQb2vDqW1vbnMgZW50ZmVybnQsIHdlaWwgZGFzIHZpZWxsZWljaHQgZWluZW4gYW5kZXJlbiBCbGljayBhdWYgZGllIFNhY2hlIGVybcO2Z2xpY2h0LiBEYWbDvHIgd2VyZGVuIGRpZSBsZWdlbmTDpHJlbiByYXVzZ2VmaWx0ZXJ0IHVuZCBlaW4gQm94cGxvdCBlcnN0ZWxsdC4KCmBgYHtyfQpQb2vDqW1vbl9sZWdfZmlsdGVyZWQgPC0gZmlsdGVyKFBva8OpbW9uX2ZpbHRlcmVkLCAhTGVnZW5kYXJ5LlR5cGUgJWluJSBjKCJMZWdlbmRhcnkiLCAiTXl0aGljYWwiLCJTdWItTGVnZW5kYXJ5IikpCmdncGxvdChkYXRhID0gUG9rw6ltb25fbGVnX2ZpbHRlcmVkLCBhZXMoeCA9IGZhY3RvcihHZW5lcmF0aW9uKSwgeSA9IEJhc2UuU3RhdC5Ub3RhbCwgZmlsbCA9IGZhY3RvcihHZW5lcmF0aW9uKSkpICsKICBnZW9tX2JveHBsb3QoKSArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcyA9IGdlbmVyYXRpb25fY29sb3VycykKYGBgCkpldHp0IGlzdCBzZWhyIGd1dCBhbSBNZWRpYW4genUgc2VoZW4sIGRhc3MgZGllIHZpZXJ0ZSBHZW5lcmF0aW9uIHJlY2h0IHN0YXJrIGlzdCB1bmQgZWluZW4gSG9jaHB1bmt0IGluIGRlciBlcnN0ZW4gSMOkbGZ0ZSBkYXJzdGVsbHQuIEF1w59lcmRlbSBpc3QgZGVyIE1lZGlhbiBzZWl0IGRlciBmdW5mdGVuIEdlbmVyYXRpb24ga29udGludWllcmxpY2ggZ2VzdGllZ2VuIHVuZCBoYXQgbWl0dGxlcndlaWxlIGRlbiBIb2NocHVua3QgZGVyIHZpZXJ0ZW4gR2VuZXJhdGlvbiDDvGJlcnNjaHJpdHRlbi4gRGllIGFrdHVlbGxzdGUgR2VuZXJhdGlvbiBoYXQgenVkZW0gZGllIGdyw7bDn3RlbiBXaGlza2VycyBuYWNoIG9iZW4uIAoKSW0gZm9sZ2VuZGVuIHd1cmRlIGRlciBNZWRpYW4gbm9jaG1hbCDDvGJlciBkaWUgZWluemVsbmVuIEdlbmVyYXRpb25lbiBhbHMgQm94cGxvdCBiZXRyYWNodGV0LCB1bSBkZW4gVmVybGF1ZiBkZXMgTWVkaWFuIHp1IHZlcmRldXRsaWNoZW4uCmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IFBva8OpbW9uX2xlZ19maWx0ZXJlZCwgYWVzKHggPSBmYWN0b3IoR2VuZXJhdGlvbiksIHkgPSBCYXNlLlN0YXQuVG90YWwsIGZpbGwgPSBmYWN0b3IoR2VuZXJhdGlvbikpKSArCiAgc3RhdF9zdW1tYXJ5KGZ1bi55ID0gIm1lZGlhbiIsIGdlb20gPSAiYmFyIikgKwogIHNjYWxlX2ZpbGxfbWFudWFsKHZhbHVlcyA9IGdlbmVyYXRpb25fY29sb3VycykKYGBgCgojIyBGYXppdAoKVW5zZXJlIEFuYWx5c2UgemVpZ3Qga2xhciwgZGFzcyBkaWUgbm9ybWFsZW4gUG9rw6ltb25zIHNlaXQgZGVyIGbDvG5mdGVuIEdlbmVyYXRpb24gaW1tZXIgaMO2aGVyZSBCYXNpc3dlcnRlIGJlc2l0emVuLiBJbiBkaWVzZW0gSGluYmxpY2sgaXN0IGRpZSBha3R1ZWxsc3RlIFBva8OpbW9uIEdlbmVyYXRpb24gOSB0YXRzw6RjaGxpY2ggYXVjaCBkaWUgc3TDpHJrc3RlIEdlbmVyYXRpb24uIERpZSBBbmFseXNlIGJla3LDpGZ0aWd0IGFsc28gZGVuIFZvcnd1cmYgZGVzIFBvd2VyY3JlZXBzIGluIFBva8OpbW9uLgoKRWluZSBrbGFyZSBCZXN0w6R0aWd1bmcgZsO8ciBkZW4gUG93ZXJjcmVlcCBpc3QgZGllIEFuYWx5c2UgYWJlciBhdWNoIG5pY2h0LCB3ZWlsIGF1Y2ggYW5kZXJlIEZha3RvcmVuLCB3aWUgRsOkaGlna2VpdGVuIG9kZXIgQXR0YWNrZW4sIGRpZSBTdMOkcmtlIGVpbmVzIFBva8OpbW9ucyBiZWVpbmZsdXNzZW4uIERpZXNlIEZha3RvcmVuIGVpbnp1YmV6aWVoZW4gaXN0IG1pdCB1bnNlcmVtIERhdGVuc2F0eiBsZWlkZXIgbmljaHQgbcO2Z2xpY2ggdW5kIGF1w59lcmRlbSBzZWhyIGtvbXBsZXguIFVuc2VyZSBBbmFseXNlIHNhZ3QgbGVkaWdsaWNoIGF1cywgZGFzcyBkaWUgQmFzaXN3ZXJ0ZSBlaW4gSW5kaXogZsO8ciBkZW4gVm9yd3VyZiBkZXMgUG93ZXJjcmVlcHMgc2luZC4KCgoKCg==</div>
 
 
 
